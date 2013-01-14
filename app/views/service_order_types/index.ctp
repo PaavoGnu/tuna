@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('ID', 'id');?></th>
+			<th><?php echo $this->Paginator->sort('Número', 'service_order_type_number');?></th>
 			<th><?php echo $this->Paginator->sort('Grupo', 'parent_id');?></th>
 			<th><?php echo $this->Paginator->sort('Nome', 'service_order_type_name');?></th>
 			<th><?php echo $this->Paginator->sort('Descrição', 'service_order_type_description');?></th>
@@ -19,6 +20,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $serviceOrderType['ServiceOrderType']['id']; ?>&nbsp;</td>
+		<td><?php echo $serviceOrderType['ServiceOrderType']['service_order_type_number']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($serviceOrderType['ParentServiceOrderType']['service_order_type_name'], array('controller' => 'service_order_types', 'action' => 'view', $serviceOrderType['ParentServiceOrderType']['id'])); ?>
 		</td>

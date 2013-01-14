@@ -3,6 +3,8 @@ class MeasureUnit extends AppModel {
 	var $name = 'MeasureUnit';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'measure_unit_name';
+	var $order = 'measure_unit_name';
+	
 	var $validate = array(
 		'measure_unit_name' => array(
 			'notempty' => array(

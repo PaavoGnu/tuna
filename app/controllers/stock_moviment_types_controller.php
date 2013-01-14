@@ -26,8 +26,9 @@ class StockMovimentTypesController extends AppController {
 				$this->Session->setFlash(__('The stock moviment type could not be saved. Please, try again.', true));
 			}
 		}
+		$parents = $this->StockMovimentType->ParentStockMovimentType->find('list');
 		$stockMovimentOperations = $this->StockMovimentType->StockMovimentOperation->find('list');
-		$this->set(compact('stockMovimentOperations'));
+		$this->set(compact('parents', 'stockMovimentOperations'));
 	}
 
 	function edit($id = null) {
@@ -46,8 +47,9 @@ class StockMovimentTypesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->StockMovimentType->read(null, $id);
 		}
+		$parents = $this->StockMovimentType->ParentStockMovimentType->find('list');
 		$stockMovimentOperations = $this->StockMovimentType->StockMovimentOperation->find('list');
-		$this->set(compact('stockMovimentOperations'));
+		$this->set(compact('parents', 'stockMovimentOperations'));
 	}
 
 	function delete($id = null) {

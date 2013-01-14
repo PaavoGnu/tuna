@@ -3,7 +3,7 @@
 	<fieldset>
  		<legend><?php __('Tipos de Entidade - Editar'); ?></legend>
 	<?php
-		echo $this->Form->input('id', array('label' => 'ID'));
+		echo $this->Form->input('entity_type_number', array('label' => 'Número'));
 		echo $this->Form->input('parent_id', array('label' => 'Grupo', 'empty' => '-'));
 		echo $this->Form->input('entity_type_name', array('label' => 'Nome'));
 	?>

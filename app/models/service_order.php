@@ -22,6 +22,24 @@ class ServiceOrder extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'enterprise_unit_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'entity_group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -51,6 +69,16 @@ class ServiceOrder extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'entity_contact_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -151,6 +179,13 @@ class ServiceOrder extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'EnterpriseUnit' => array(
+			'className' => 'EnterpriseUnit',
+			'foreignKey' => 'enterprise_unit_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'EntityGroup' => array(
 			'className' => 'EntityGroup',
 			'foreignKey' => 'entity_group_id',
@@ -165,9 +200,16 @@ class ServiceOrder extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'ServiceOrderPriority' => array(
-			'className' => 'ServiceOrderPriority',
-			'foreignKey' => 'service_order_priority_id',
+		'EntityContact' => array(
+			'className' => 'EntityContact',
+			'foreignKey' => 'entity_contact_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ServiceOrderPriorityType' => array(
+			'className' => 'ServiceOrderPriorityType',
+			'foreignKey' => 'service_order_priority_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -214,9 +256,16 @@ class ServiceOrder extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'ServiceOrderEvaluation' => array(
-			'className' => 'ServiceOrderEvaluation',
-			'foreignKey' => 'service_order_evaluation_id',
+		'ServiceOrderEvaluationType' => array(
+			'className' => 'ServiceOrderEvaluationType',
+			'foreignKey' => 'service_order_evaluation_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ServiceOrderEvaluationUser' => array(
+			'className' => 'ServiceOrderEvaluationUser',
+			'foreignKey' => 'service_order_evaluation_user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -263,10 +312,35 @@ class ServiceOrder extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'ServiceOrdersStockMoviment' => array(
+			'className' => 'ServiceOrdersStockMoviment',
+			'foreignKey' => 'service_order_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ServiceOrdersAssetMoviment' => array(
+			'className' => 'ServiceOrdersAssetMoviment',
+			'foreignKey' => 'service_order_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 	
-
 	var $hasAndBelongsToMany = array(
 		'StockMoviment' => array(
 			'className' => 'StockMoviment',
@@ -282,7 +356,52 @@ class ServiceOrder extends AppModel {
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
-		)
+		),
+		'AssetMoviment' => array(
+			'className' => 'AssetMoviment',
+			'joinTable' => 'service_orders_asset_moviments',
+			'foreignKey' => 'service_order_id',
+			'associationForeignKey' => 'asset_moviment_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'EntityTechnician' => array(
+			'className' => 'EntityTechnician',
+			'joinTable' => 'service_order_steps',
+			'foreignKey' => 'service_order_id',
+			'associationForeignKey' => 'entity_technician_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'ServiceOrderStepType' => array(
+			'className' => 'ServiceOrderStepType',
+			'joinTable' => 'service_order_steps',
+			'foreignKey' => 'service_order_id',
+			'associationForeignKey' => 'service_order_step_type_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
 	);
 	
 	
@@ -292,7 +411,7 @@ class ServiceOrder extends AppModel {
 			'ServiceOrder.service_order_routing_date',
 			'ServiceOrder.service_order_close_date',
 			'ServiceOrder.service_order_evaluation_date',
-			'ServiceOrder.service_order_priority_id' => 'DESC',
+			'ServiceOrder.service_order_priority_type_id' => 'DESC',
 			'ServiceOrder.service_order_opening_date'
 			);
 	}

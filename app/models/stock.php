@@ -14,16 +14,6 @@ class Stock extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'stock_description' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'stock_enabled' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
@@ -53,13 +43,12 @@ class Stock extends AppModel {
 		)
 	);
 
-
 	var $hasAndBelongsToMany = array(
-		'Enterprise' => array(
-			'className' => 'Enterprise',
-			'joinTable' => 'enterprises_stocks',
+		'EnterpriseUnit' => array(
+			'className' => 'EnterpriseUnit',
+			'joinTable' => 'enterprise_units_stocks',
 			'foreignKey' => 'stock_id',
-			'associationForeignKey' => 'enterprise_id',
+			'associationForeignKey' => 'enterprise_unit_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

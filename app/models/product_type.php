@@ -3,6 +3,7 @@ class ProductType extends AppModel {
 	var $name = 'ProductType';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'product_type_structure';
+	var $order = 'product_type_structure';
 	
 	var $virtualFields = array(
 		'product_type_structure' => 'fn_product_type_structure(ProductType.id)'

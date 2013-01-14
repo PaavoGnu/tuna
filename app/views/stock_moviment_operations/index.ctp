@@ -43,6 +43,6 @@
 	</div>
 	
 	<div class="actions">
-		<?php echo $this->Html->link(__('Novo Registro', true), array('action' => 'add')); ?>
+		<?php echo $this->Html->link(__('Nova Registro', true), array('action' => 'add')); ?>
 	</div>
 </div>

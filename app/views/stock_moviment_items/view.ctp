@@ -11,14 +11,31 @@
 			<?php echo $this->Html->link($stockMovimentItem['StockMoviment']['id'], array('controller' => 'stock_moviments', 'action' => 'view', $stockMovimentItem['StockMoviment']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Produto'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Tipo de Produto'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($stockMovimentItem['Product']['product_name'], array('controller' => 'products', 'action' => 'view', $stockMovimentItem['Product']['id'])); ?>
+			<?php echo $this->Html->link($stockMovimentItem['ProductType']['product_type_structure'], array('controller' => 'product_types', 'action' => 'view',
+				$stockMovimentItem['ProductType']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Unidade de Medida'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Produto'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($stockMovimentItem['Product']['product_structure'], array('controller' => 'products', 'action' => 'view',
+				$stockMovimentItem['Product']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Un. de Medida'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($stockMovimentItem['MeasureUnit']['measure_unit_abbreviation'], array('controller' => 'measure_units', 'action' => 'view', $stockMovimentItem['MeasureUnit']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Data'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php
+				if (!is_null($stockMovimentItem['StockMovimentItem']['stock_moviment_item_date'])) {
+					echo date('d/m/Y H:i', strtotime($stockMovimentItem['StockMovimentItem']['stock_moviment_item_date'])) . ' (' .
+						$this->Html->link($stockMovimentItem['User']['user_name'], array('controller' => 'users',
+						'action' => 'view', $stockMovimentItem['User']['id'])) . ')';
+					} ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Quantidade'); ?></dt>
@@ -29,6 +46,11 @@
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Número de Série'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $stockMovimentItem['StockMovimentItem']['stock_moviment_item_serial_number']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Etiq. de Serviço'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $stockMovimentItem['StockMovimentItem']['stock_moviment_item_service_number']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Descrição'); ?></dt>

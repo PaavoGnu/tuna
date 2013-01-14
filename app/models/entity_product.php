@@ -3,6 +3,7 @@ class EntityProduct extends AppModel {
 	var $name = 'EntityProduct';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'id';
+	
 	var $validate = array(
 		'entity_id' => array(
 			'numeric' => array(

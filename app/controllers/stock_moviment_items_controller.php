@@ -13,7 +13,10 @@ class StockMovimentItemsController extends AppController {
 
 	function add($stockMovimentId = null) {
 		if (!empty($this->data)) {
+			$this->data['StockMovimentItem']['user_id'] = $this->Auth->user('id');
+			$this->data['StockMovimentItem']['stock_moviment_item_date'] = date('Y-m-d H:i:s');
 			$this->StockMovimentItem->create();
+			
 			if ($this->StockMovimentItem->save($this->data)) {
 				$this->Session->setFlash(__('The stock moviment item has been saved', true));
 				$this->redirect(array('controller' => 'stock_moviments', 'action' => 'view', $this->data['StockMovimentItem']['stock_moviment_id']));
@@ -21,10 +24,10 @@ class StockMovimentItemsController extends AppController {
 				$this->Session->setFlash(__('The stock moviment item could not be saved. Please, try again.', true));
 			}
 		}
-		$stockMoviments = $this->StockMovimentItem->StockMoviment->find('list');
-		$products = $this->StockMovimentItem->Product->find('list');
+		$productTypes = $this->StockMovimentItem->ProductType->find('list');
+		$products = array();
 		$measureUnits = $this->StockMovimentItem->MeasureUnit->find('list');
-		$this->set(compact('stockMovimentId', 'stockMoviments', 'products', 'measureUnits'));
+		$this->set(compact('stockMovimentId', 'productTypes', 'productBrands', 'products', 'measureUnits'));
 	}
 
 	function edit($id = null) {
@@ -33,6 +36,9 @@ class StockMovimentItemsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['StockMovimentItem']['user_id'] = $this->Auth->user('id');
+			$this->data['StockMovimentItem']['stock_moviment_item_date'] = date('Y-m-d H:i:s');
+			
 			if ($this->StockMovimentItem->save($this->data)) {
 				$this->Session->setFlash(__('The stock moviment item has been saved', true));
 				$this->redirect(array('controller' => 'stock_moviments', 'action' => 'view', $this->data['StockMovimentItem']['stock_moviment_id']));
@@ -43,10 +49,10 @@ class StockMovimentItemsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->StockMovimentItem->read(null, $id);
 		}
-		$stockMoviments = $this->StockMovimentItem->StockMoviment->find('list');
+		$productTypes = $this->StockMovimentItem->ProductType->find('list');
 		$products = $this->StockMovimentItem->Product->find('list');
 		$measureUnits = $this->StockMovimentItem->MeasureUnit->find('list');
-		$this->set(compact('stockMoviments', 'products', 'measureUnits'));
+		$this->set(compact('productTypes', 'productBrands', 'products', 'measureUnits'));
 	}
 
 	function delete($id = null) {
@@ -63,6 +69,24 @@ class StockMovimentItemsController extends AppController {
 		}
 		$this->Session->setFlash(__('Stock moviment item was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function getProduct() {
+		$this->autoRender = false;
+		
+		if ( $this->RequestHandler->isAjax() ) {
+		   Configure::write ( 'debug', 0 );
+		}
+
+		$products = $this->StockMovimentItem->Product->find('list', array('conditions' =>
+			'Product.id in (SELECT id FROM products WHERE product_type_id = ' . 
+				$_POST['data']['StockMovimentItem']['product_type_id'] . ')', 'order' => 'Product.product_structure'));
+		
+		echo '<option value=""></option>';
+		
+		foreach($products as $k => $v) :
+			echo '<option value="'.$k.'">'.$v.'</option>';
+		endforeach;
 	}
 }
 ?>

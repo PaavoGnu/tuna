@@ -33,7 +33,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Descrição'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $serviceOrderStep['ServiceOrderStep']['service_order_step_opening_description']; ?>
+			<?php echo nl2br($serviceOrderStep['ServiceOrderStep']['service_order_step_opening_description']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Encerramento'); ?></dt>
@@ -48,7 +48,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Solução'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $serviceOrderStep['ServiceOrderStep']['service_order_step_close_description']; ?>
+			<?php echo nl2br($serviceOrderStep['ServiceOrderStep']['service_order_step_close_description']); ?>
 			&nbsp;
 		</dd>
 	</dl>

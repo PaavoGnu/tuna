@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('ID', 'id');?></th>
+			<th><?php echo $this->Paginator->sort('Número', 'entity_group_number');?></th>
 			<th><?php echo $this->Paginator->sort('Grupo', 'parent_id');?></th>
 			<th><?php echo $this->Paginator->sort('Nome', 'entity_group_name');?></th>
 			<th><?php echo $this->Paginator->sort('Nome Estruturado', 'entity_group_structure');?></th>
@@ -18,6 +19,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $entityGroup['EntityGroup']['id']; ?>&nbsp;</td>
+		<td><?php echo $entityGroup['EntityGroup']['entity_group_number']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($entityGroup['ParentEntityGroup']['entity_group_name'], array('controller' => 'entity_groups', 'action' => 'view', $entityGroup['ParentEntityGroup']['id'])); ?>
 		</td>

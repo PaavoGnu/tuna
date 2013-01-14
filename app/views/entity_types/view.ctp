@@ -6,6 +6,11 @@
 			<?php echo $entityType['EntityType']['id']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Número'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $entityType['EntityType']['entity_type_number']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Grupo'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($entityType['ParentEntityType']['entity_type_name'], array('controller' => 'entity_types', 'action' => 'view', $entityType['ParentEntityType']['id'])); ?>

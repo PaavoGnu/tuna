@@ -6,6 +6,7 @@
 			<th><?php echo $this->Paginator->sort('Tipo', 'product_type_id');?></th>
 			<th><?php echo $this->Paginator->sort('Marca', 'product_brand_id');?></th>
 			<th><?php echo $this->Paginator->sort('Nome', 'product_name');?></th>
+			<th><?php echo $this->Paginator->sort('Nome Estruturado', 'product_structure');?></th>
 			<th><?php echo $this->Paginator->sort('Descrição', 'product_description');?></th>
 			<th class="actions"><?php __('Ações');?></th>
 	</tr>
@@ -26,6 +27,7 @@
 			<?php echo $this->Html->link($product['ProductBrand']['product_brand_name'], array('controller' => 'product_brands', 'action' => 'view', $product['ProductBrand']['id'])); ?>
 		</td>
 		<td><?php echo $product['Product']['product_name']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['product_structure']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['product_description']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Visualizar', true), array('action' => 'view', $product['Product']['id'])); ?>

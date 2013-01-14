@@ -22,6 +22,24 @@ class StockMoviment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'enterprise_unit_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'stock_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -97,6 +115,13 @@ class StockMoviment extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'EnterpriseUnit' => array(
+			'className' => 'EnterpriseUnit',
+			'foreignKey' => 'enterprise_unit_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Stock' => array(
 			'className' => 'Stock',
 			'foreignKey' => 'stock_id',
@@ -135,7 +160,6 @@ class StockMoviment extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
 
 	var $hasAndBelongsToMany = array(
 		'ServiceOrder' => array(

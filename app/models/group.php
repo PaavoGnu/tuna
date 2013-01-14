@@ -3,6 +3,7 @@ class Group extends AppModel {
 	var $name = 'Group';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'group_name';
+	var $order = 'group_name';
 	
 	var $actsAs = array('Acl' => array('type' => 'requester'));
 

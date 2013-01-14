@@ -6,6 +6,11 @@
 			<?php echo $serviceOrderStepType['ServiceOrderStepType']['id']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Número'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $serviceOrderStepType['ServiceOrderStepType']['service_order_step_type_number']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Grupo'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($serviceOrderStepType['ParentServiceOrderStepType']['service_order_step_type_name'], array('controller' => 'service_order_step_types', 'action' => 'view', $serviceOrderStepType['ParentServiceOrderStepType']['id'])); ?>

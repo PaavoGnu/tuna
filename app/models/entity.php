@@ -83,7 +83,7 @@ class Entity extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+		)
 	);
 		
 	var $hasMany = array(
@@ -128,6 +128,19 @@ class Entity extends AppModel {
 		),
 		'EntitiesEntityGroup' => array(
 			'className' => 'EntitiesEntityGroup',
+			'foreignKey' => 'entity_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'EntitiesEntityContact' => array(
+			'className' => 'EntitiesEntityContact',
 			'foreignKey' => 'entity_id',
 			'dependent' => false,
 			'conditions' => '',

@@ -3,9 +3,9 @@
 	<fieldset>
  		<legend><?php __('Empresas - Editar'); ?></legend>
 	<?php
-		echo $this->Form->input('id', array('label' => 'ID'));
+		echo $this->Form->input('enterprise_number', array('label' => 'Número'));
+		echo $this->Form->input('parent_id', array('label' => 'Grupo', 'empty' => '-'));
 		echo $this->Form->input('entity_id', array('label' => 'Entidade'));
-		echo $this->Form->input('Stock', array('label' => 'Estoques'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Salvar', true));?>

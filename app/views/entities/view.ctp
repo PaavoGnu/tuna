@@ -96,9 +96,9 @@
 		</dd>
 	</dl>
 </div>
-	<div class="related">
-	<?php if (!empty($entity['EntitiesEntityGroup'])):?>
+<div class="related">
 	<h3><?php __('Entidades / Grupos de Entidade');?></h3>
+	<?php if (!empty($entity['EntitiesEntityGroup'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('ID'); ?></th>
@@ -115,7 +115,7 @@
 		?>
 		<tr<?php echo $class;?>>
 			<td><?php echo $entitiesEntityGroup['id'];?></td>
-			<td><?php echo $entityGroups[$entitiesEntityGroup['entity_group_id']];?></td>
+			<td><?php echo $this->Html->link($entityGroups[$entitiesEntityGroup['entity_group_id']], array('controller' => 'entity_groups', 'action' => 'view', $entitiesEntityGroup['entity_group_id'])); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('Excluir', true), array('controller' => 'entities_entity_groups', 'action' => 'delete', $entitiesEntityGroup['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $entitiesEntityGroup['id'])); ?>
 			</td>
@@ -127,6 +127,40 @@
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('Nova Entidade / Grupo de Entidade', true), array('controller' => 'entities_entity_groups', 'action' => 'add', $entity['Entity']['id'], null));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Entidades / Contatos de Entidade');?></h3>
+	<?php if (!empty($entity['EntitiesEntityContact'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('ID'); ?></th>
+		<th><?php __('Contato de Entidade'); ?></th>
+		<th><?php __('Ações'); ?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($entity['EntitiesEntityContact'] as $entitiesEntityContact):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $entitiesEntityContact['id'];?></td>
+			<td><?php echo $this->Html->link($entitiesEntityContact['entity_contact_name'], array('controller' => 'entities', 'action' => 'view', $entitiesEntityContact['entity_contact_id'])); ?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('Excluir', true), array('controller' => 'entities_entity_contacts', 'action' => 'delete', $entitiesEntityContact['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $entitiesEntityContact['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('Nova Entidade / Contato de Entidade', true), array('controller' => 'entities_entity_contacts', 'action' => 'add', $entity['Entity']['id'], null));?> </li>
 		</ul>
 	</div>
 </div>

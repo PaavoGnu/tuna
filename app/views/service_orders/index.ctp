@@ -19,9 +19,11 @@
 			<th><?php echo $this->Paginator->sort('ID', 'id');?></th>
 			<th><?php echo $this->Paginator->sort('Abertura', 'service_order_opening_date');?></th>
 			<!--<th><?php echo $this->Paginator->sort('Empresa', 'enterprise_id');?></th>-->
-			<th><?php echo $this->Paginator->sort('Grupo', 'entity_group_id');?></th>
+			<!--<th><?php echo $this->Paginator->sort('Un. de Empresa', 'enterprise_unit_id');?></th>-->
+			<!--<th><?php echo $this->Paginator->sort('Grupo', 'entity_group_id');?></th>-->
 			<th><?php echo $this->Paginator->sort('Entidade', 'entity_id');?></th>
-			<th><?php echo $this->Paginator->sort('Prioridade', 'service_order_priority_id');?></th>
+			<th><?php echo $this->Paginator->sort('Contato', 'entity_contact_id');?></th>
+			<th><?php echo $this->Paginator->sort('Prioridade', 'service_order_priority_type_id');?></th>
 			<!--<th><?php echo $this->Paginator->sort('Tipo', 'service_order_type_id');?></th>-->
 			<!--<th><?php echo $this->Paginator->sort('Garantia', 'service_order_warranty');?></th>-->
 			<th><?php echo $this->Paginator->sort('Encaminhamento', 'service_order_routing_date');?></th>
@@ -47,14 +49,20 @@
 		<!--<td>
 			<?php echo $this->Html->link($serviceOrder['Enterprise']['enterprise_name'], array('controller' => 'enterprises', 'action' => 'view', $serviceOrder['Enterprise']['id'])); ?>
 		</td>-->
-		<td>
+		<!--<td>
+			<?php echo $this->Html->link($serviceOrder['EnterpriseUnit']['enterprise_unit_structure'], array('controller' => 'enterprise_units', 'action' => 'view', $serviceOrder['EnterpriseUnit']['id'])); ?>
+		</td>-->
+		<!--<td>
 			<?php echo $this->Html->link($serviceOrder['EntityGroup']['entity_group_name'], array('controller' => 'entity_groups', 'action' => 'view', $serviceOrder['EntityGroup']['id'])); ?>
-		</td>
+		</td>-->
 		<td>
 			<?php echo $this->Html->link($serviceOrder['Entity']['entity_name'], array('controller' => 'entities', 'action' => 'view', $serviceOrder['Entity']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $serviceOrder['ServiceOrderPriority']['service_order_priority_name']; ?>
+			<?php echo $this->Html->link($serviceOrder['EntityContact']['entity_contact_name'], array('controller' => 'entities', 'action' => 'view', $serviceOrder['EntityContact']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $serviceOrder['ServiceOrderPriorityType']['service_order_priority_type_name']; ?>
 		</td>
 		<!--<td>
 			<?php echo $this->Html->link($serviceOrder['ServiceOrderType']['service_order_type_name'], array('controller' => 'service_order_types', 'action' => 'view', $serviceOrder['ServiceOrderType']['id'])); ?>

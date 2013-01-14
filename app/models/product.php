@@ -2,13 +2,11 @@
 class Product extends AppModel {
 	var $name = 'Product';
 	var $useDbConfig = 'tuna';
-	var $displayField = 'product_name';
+	var $displayField = 'product_structure';
+	var $order = 'product_structure';
 	
 	var $virtualFields = array(
-		'product_description' => 'CONCAT((
-			SELECT product_type_name FROM product_types WHERE id = Product.product_type_id), " ", (
-			SELECT product_brand_name FROM product_brands WHERE id = Product.product_brand_id), " ", 
-			Product.product_name)'
+		'product_structure' => 'fn_product_structure(Product.id)'
 		);
 		
 	var $validate = array(

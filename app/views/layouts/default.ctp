@@ -26,8 +26,8 @@
 			
 			<div class="right">
 				<?php echo $this->Html->link(
-					$this->Html->image('customer.png', array('alt'=> __('Google', true), 'border' => '0')),
-						'http://www.google.com.br/', array('target' => '_blank', 'escape' => false));
+					$this->Html->image('customer.png', array('alt'=> __('Tuna - Web ERP', true), 'border' => '0')),
+						'http://www.unisanta.br/', array('target' => '_blank', 'escape' => false));
 				?>
 			</div>
 		</div>
@@ -39,6 +39,7 @@
 							<a class="category">Cadastros</a>
 							<ul class="submenu">
 								<li><?php echo $this->Html->link(__('Empresas', true), array('controller' => 'enterprises', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Unidades de Empresa', true), array('controller' => 'enterprise_units', 'action' => 'index')); ?></li>
 								<li><?php echo $this->Html->link(__('Entidades', true), array('controller' => 'entities', 'action' => 'index')); ?></li>
 								<li><?php echo $this->Html->link(__('Tipos de Entidade', true), array('controller' => 'entity_types', 'action' => 'index')); ?></li>
 								<li><?php echo $this->Html->link(__('Grupos de Entidade', true), array('controller' => 'entity_groups', 'action' => 'index')); ?></li>
@@ -49,6 +50,11 @@
 								<li><?php echo $this->Html->link(__('Técnicos', true), array('controller' => 'entity_technicians', 'action' => 'index')); ?></li>
 								<li><?php echo $this->Html->link(__('Tipos de Ordem de Serviço', true), array('controller' => 'service_order_types', 'action' => 'index')); ?></li>
 								<li><?php echo $this->Html->link(__('Tipos de Etapa de Ordem de Serviço', true), array('controller' => 'service_order_step_types', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Operações de Movimento de Estoque', true), array('controller' => 'stock_moviment_operations', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Tipos de Movimento de Estoque', true), array('controller' => 'stock_moviment_types', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Estoques', true), array('controller' => 'stocks', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Operações de Movimento de Ativo', true), array('controller' => 'asset_moviment_operations', 'action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Tipos de Movimento de Ativo', true), array('controller' => 'asset_moviment_types', 'action' => 'index')); ?></li>								
 							</ul>
 						</li>
 					</ul>
@@ -57,6 +63,19 @@
 							<a class="category">Movimentos</a>
 							<ul class="submenu">
 								<li><?php echo $this->Html->link(__('Ordem de Serviço', true), array('controller' => 'service_orders','action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Estoque', true), array('controller' => 'stock_moviments','action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Ativo', true), array('controller' => 'asset_moviments','action' => 'index')); ?></li>
+							</ul>
+						</li>
+					</ul>	
+					<ul class="menu">
+						<li class="list">
+							<a class="category">Consultas</a>
+							<ul class="submenu">
+								<li><?php echo $this->Html->link(__('Movimento de Estoque', true), array('controller' => 'view_stock_moviment_items','action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Posição de Estoque', true), array('controller' => 'view_stock_moviment_item_positions','action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Movimento de Ativo', true), array('controller' => 'view_asset_moviment_items','action' => 'index')); ?></li>
+								<li><?php echo $this->Html->link(__('Posição de Ativo', true), array('controller' => 'view_asset_moviment_item_positions','action' => 'index')); ?></li>
 							</ul>
 						</li>
 					</ul>	
@@ -113,6 +132,7 @@
 				<ul>
 					<li><?php echo $this->Html->link(__('Logout', true), array('controller' => 'users', 'action' => 'logout')); ?></li>
 					<li><?php echo $this->Html->link(__('Trocar Senha', true), array('controller' => 'users', 'action' => 'changePassword', $auth->user('id'))); ?></li>
+					<li><?php echo 'Powered By: ' . $this->Html->link(__($frameWorkTitle.' ('.$frameWorkVersion.')', true), $frameWorkURL, array('target' => '_blank', 'escape' => false)); ?></li>					
 				</ul>
 			</div>
 		</div>

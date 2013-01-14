@@ -10,7 +10,7 @@ class StockMovimentOperationsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid stock moviment operation', true));
+			$this->Session->setFlash(__('Invalid stock moviment operation ', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('stockMovimentOperation', $this->StockMovimentOperation->read(null, $id));
@@ -30,7 +30,7 @@ class StockMovimentOperationsController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid stock moviment operation', true));
+			$this->Session->setFlash(__('Invalid stock moviment operation ', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
@@ -48,7 +48,7 @@ class StockMovimentOperationsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for stock moviment operation', true));
+			$this->Session->setFlash(__('Invalid id for stock moviment operation ', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->StockMovimentOperation->delete($id)) {

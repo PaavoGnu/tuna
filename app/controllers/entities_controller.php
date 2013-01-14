@@ -5,11 +5,12 @@ class EntitiesController extends AppController {
 
 	function index() {
 		$this->Entity->recursive = 0;
-		$this->set('entities', $this->paginate());
+		$this->set('entities', $this->paginate()); 
 	}
 
 	function view($id = null) {
 		$this->Entity->recursive = 2;
+		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid entity', true));
 			$this->redirect(array('action' => 'index'));
@@ -42,7 +43,7 @@ class EntitiesController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Entity->save($this->data)) {
 				$this->Session->setFlash(__('The entity has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Entity->id));
 			} else {
 				$this->Session->setFlash(__('The entity could not be saved. Please, try again.', true));
 			}

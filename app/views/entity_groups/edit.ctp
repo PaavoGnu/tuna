@@ -3,6 +3,7 @@
 	<fieldset>
  		<legend><?php __('Grupos de Entidade - Editar'); ?></legend>
 	<?php
+		echo $this->Form->input('entity_group_number', array('label' => 'Número'));
 		echo $this->Form->input('parent_id', array('label' => 'Grupo', 'empty' => '-'));
 		echo $this->Form->input('entity_group_name', array('label' => 'Nome'));
 	?>

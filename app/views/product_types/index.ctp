@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('ID', 'id');?></th>
+			<th><?php echo $this->Paginator->sort('Número', 'product_type_number');?></th>
 			<th><?php echo $this->Paginator->sort('Grupo', 'parent_id');?></th>
 			<th><?php echo $this->Paginator->sort('Nome', 'product_type_name');?></th>
 			<th><?php echo $this->Paginator->sort('Nome Estruturado', 'product_type_structure');?></th>
@@ -18,6 +19,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $productType['ProductType']['id']; ?>&nbsp;</td>
+		<td><?php echo $productType['ProductType']['product_type_number']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($productType['ParentProductType']['product_type_name'], array('controller' => 'product_types', 'action' => 'view', $productType['ParentProductType']['id'])); ?>
 		</td>

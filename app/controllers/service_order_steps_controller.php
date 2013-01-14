@@ -14,6 +14,9 @@ class ServiceOrderStepsController extends AppController {
 	function add($serviceOrderId = null) {
 		if (!empty($this->data)) {
 			$this->ServiceOrderStep->create();
+			
+			$this->data['ServiceOrderStep']['service_order_step_opening_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
 				$this->redirect(array('controller' => 'service_orders', 'action' => 'view', $this->data['ServiceOrderStep']['service_order_id']));
@@ -22,7 +25,8 @@ class ServiceOrderStepsController extends AppController {
 			}
 		}
 		$serviceOrders = $this->ServiceOrderStep->ServiceOrder->find('list');
-		$entityTechnicians = $this->ServiceOrderStep->EntityTechnician->find('list');
+		$entityTechnicians = $this->ServiceOrderStep->EntityTechnician->find('list', array('conditions' =>
+			array('entity_technician_enabled' => true)));
 		$serviceOrderStepTypes = $this->ServiceOrderStep->ServiceOrderStepType->find('list');
 		$serviceOrderStepOpeningUsers = $this->ServiceOrderStep->ServiceOrderStepOpeningUser->find('list');
 		$this->set(compact('serviceOrderId', 'serviceOrders', 'entityTechnicians', 'serviceOrderStepTypes', 'serviceOrderStepExecutionTypes', 
@@ -35,6 +39,8 @@ class ServiceOrderStepsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrderStep']['service_order_step_opening_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
 				$this->redirect(array('controller' => 'service_orders', 'action' => 'view', $this->data['ServiceOrderStep']['service_order_id']));
@@ -46,7 +52,8 @@ class ServiceOrderStepsController extends AppController {
 			$this->data = $this->ServiceOrderStep->read(null, $id);
 		}
 		$serviceOrders = $this->ServiceOrderStep->ServiceOrder->find('list');
-		$entityTechnicians = $this->ServiceOrderStep->EntityTechnician->find('list');
+		$entityTechnicians = $this->ServiceOrderStep->EntityTechnician->find('list', array('conditions' =>
+			array('entity_technician_enabled' => true)));
 		$serviceOrderStepTypes = $this->ServiceOrderStep->ServiceOrderStepType->find('list');
 		$serviceOrderStepOpeningUsers = $this->ServiceOrderStep->ServiceOrderStepOpeningUser->find('list');
 		$this->set(compact('serviceOrderId', 'serviceOrders', 'entityTechnicians', 'serviceOrderStepTypes', 'serviceOrderStepExecutionTypes', 
@@ -59,6 +66,8 @@ class ServiceOrderStepsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrderStep']['service_order_step_close_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
 				$this->redirect(array('controller' => 'service_orders', 'action' => 'view', $this->data['ServiceOrderStep']['service_order_id']));

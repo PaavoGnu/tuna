@@ -2,10 +2,11 @@
 class Enterprise extends AppModel {
 	var $name = 'Enterprise';
 	var $useDbConfig = 'tuna';
-	var $displayField = 'enterprise_name';
+	var $displayField = 'enterprise_structure';
+	var $order = 'enterprise_structure';
 	
 	var $virtualFields = array(
-		'enterprise_name' => 'SELECT entity_name FROM entities WHERE id = Enterprise.entity_id'
+		'enterprise_structure' => 'fn_enterprise_structure(Enterprise.id)'
 		);
 		
 	var $validate = array(
@@ -31,6 +32,13 @@ class Enterprise extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
+		'ParentEnterprise' => array(
+			'className' => 'ParentEnterprise',
+			'foreignKey' => 'parent_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Entity' => array(
 			'className' => 'Entity',
 			'foreignKey' => 'entity_id',
@@ -84,21 +92,6 @@ class Enterprise extends AppModel {
 
 
 	var $hasAndBelongsToMany = array(
-		'Stock' => array(
-			'className' => 'Stock',
-			'joinTable' => 'enterprises_stocks',
-			'foreignKey' => 'enterprise_id',
-			'associationForeignKey' => 'stock_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
 		'SystemVersion' => array(
 			'className' => 'SystemVersion',
 			'joinTable' => 'system_versions_enterprises',

@@ -26,9 +26,9 @@ class EnterprisesController extends AppController {
 				$this->Session->setFlash(__('The enterprise could not be saved. Please, try again.', true));
 			}
 		}
+		$parents = $this->Enterprise->ParentEnterprise->find('list');
 		$entities = $this->Enterprise->Entity->find('list');
-		$stocks = $this->Enterprise->Stock->find('list');
-		$this->set(compact('entities', 'stocks'));
+		$this->set(compact('parents', 'entities'));
 	}
 
 	function edit($id = null) {
@@ -47,9 +47,9 @@ class EnterprisesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Enterprise->read(null, $id);
 		}
+		$parents = $this->Enterprise->ParentEnterprise->find('list');
 		$entities = $this->Enterprise->Entity->find('list');
-		$stocks = $this->Enterprise->Stock->find('list');
-		$this->set(compact('entities', 'stocks'));
+		$this->set(compact('parents', 'entities'));
 	}
 
 	function delete($id = null) {

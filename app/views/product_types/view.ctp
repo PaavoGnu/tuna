@@ -6,6 +6,11 @@
 			<?php echo $productType['ProductType']['id']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Número'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $productType['ProductType']['product_type_number']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Grupo'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($productType['ParentProductType']['product_type_name'], array('controller' => 'product_types', 'action' => 'view', $productType['ParentProductType']['id'])); ?>

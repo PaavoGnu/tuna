@@ -3,6 +3,8 @@ class ProductBrand extends AppModel {
 	var $name = 'ProductBrand';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'product_brand_name';
+	var $order = 'product_brand_name';
+	
 	var $validate = array(
 		'product_brand_name' => array(
 			'notempty' => array(

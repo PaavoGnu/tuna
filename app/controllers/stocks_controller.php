@@ -26,8 +26,6 @@ class StocksController extends AppController {
 				$this->Session->setFlash(__('The stock could not be saved. Please, try again.', true));
 			}
 		}
-		$enterprises = $this->Stock->Enterprise->find('list');
-		$this->set(compact('enterprises'));
 	}
 
 	function edit($id = null) {
@@ -46,8 +44,6 @@ class StocksController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Stock->read(null, $id);
 		}
-		$enterprises = $this->Stock->Enterprise->find('list');
-		$this->set(compact('enterprises'));
 	}
 
 	function delete($id = null) {
