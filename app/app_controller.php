@@ -11,7 +11,7 @@ class AppController extends Controller {
 		// Variáveis da Aplicação, Proprietário e Cliente.
 		
 		$appTitle = 'Tuna - WBMS';
-		$appVersion = '0.3.1b';
+		$appVersion = '0.3.2b';
 		
 		$ownerName = 'Tag Brasil';
 		$ownerURL = 'www.tagbrasil.com.br';

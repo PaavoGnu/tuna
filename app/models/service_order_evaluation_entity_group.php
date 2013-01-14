@@ -1,12 +1,12 @@
 <?php
-class EntityGroup extends AppModel {
+class ServiceOrderEvaluationEntityGroup extends AppModel {
 	var $name = 'EntityGroup';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'entity_group_structure';
 	var $order = 'entity_group_structure';
 	
 	var $virtualFields = array(
-		'entity_group_structure' => 'fn_entity_group_structure(EntityGroup.id)'
+		'entity_group_structure' => 'fn_entity_group_structure(ServiceOrderEvaluationEntityGroup.id)'
 		);
 		
 	var $validate = array(
@@ -42,6 +42,22 @@ class EntityGroup extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	var $hasMany = array(
+		'ServiceOrder' => array(
+			'className' => 'ServiceOrder',
+			'foreignKey' => 'service_order_evaluation_entity_group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
 	var $hasAndBelongsToMany = array(
 		'Entity' => array(
@@ -60,6 +76,5 @@ class EntityGroup extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-
 }
 ?>

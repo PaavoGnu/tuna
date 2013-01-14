@@ -68,10 +68,16 @@ class User extends AppModel {
 	);
 	
 	function parentNode() {
-		if (!$this->id && empty($this->data)) {
+		if (!$this->id) {
+			return null;
+		}
+		
+		$data = $this->read();
+		
+		if (!$data['User']['group_id']){
 			return null;
 		} else {
-			return array('Group' => array('id' => $this->data['User']['group_id']));
+			return array('model' => 'Group', 'foreign_key' => $data['User']['group_id']); 
 		}
 	}
 }

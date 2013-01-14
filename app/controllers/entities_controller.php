@@ -9,11 +9,15 @@ class EntitiesController extends AppController {
 	}
 
 	function view($id = null) {
+		$this->Entity->recursive = 2;
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid entity', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('entity', $this->Entity->read(null, $id));
+		
+		$entityGroups = $this->Entity->EntityGroup->find('list');
+		$this->set(compact('entityGroups'));
 	}
 
 	function add() {
@@ -21,14 +25,13 @@ class EntitiesController extends AppController {
 			$this->Entity->create();
 			if ($this->Entity->save($this->data)) {
 				$this->Session->setFlash(__('The entity has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Entity->id));
 			} else {
 				$this->Session->setFlash(__('The entity could not be saved. Please, try again.', true));
 			}
 		}
 		$entityTypes = $this->Entity->EntityType->find('list');
-		$entityGroups = $this->Entity->EntityGroup->find('list');
-		$this->set(compact('entityTypes', 'entityGroups'));
+		$this->set(compact('entityTypes'));
 	}
 
 	function edit($id = null) {
@@ -48,8 +51,7 @@ class EntitiesController extends AppController {
 			$this->data = $this->Entity->read(null, $id);
 		}
 		$entityTypes = $this->Entity->EntityType->find('list');
-		$entityGroups = $this->Entity->EntityGroup->find('list');
-		$this->set(compact('entityTypes', 'entityGroups'));
+		$this->set(compact('entityTypes'));
 	}
 
 	function delete($id = null) {

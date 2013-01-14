@@ -106,7 +106,7 @@ class ServiceOrdersController extends AppController {
 			}
 		}
 		$enterprises = $this->ServiceOrder->Enterprise->find('list');
-		$entityGroups = $this->ServiceOrder->EntityGroup->find('list', array('order' => 'EntityGroup.entity_group_structure'));
+		$entityGroups = $this->ServiceOrder->EntityGroup->find('list');
 		$entities = array();
 		$serviceOrderPriorities = $this->ServiceOrder->ServiceOrderPriority->find('list');
 		$serviceOrderTypes = $this->ServiceOrder->ServiceOrderType->find('list');
@@ -117,33 +117,25 @@ class ServiceOrdersController extends AppController {
 			'entityTechnicians', 'serviceOrderOpeningUsers'));
 	}
 
-	function getEntity() {
-		$this->autoRender = false;
-		// set the debug level to 0
-		if ( $this->RequestHandler->isAjax() ) {
-		   Configure::write ( 'debug', 0 );
-		}
-
-		$entities = $this->ServiceOrder->Entity->find('list', array('conditions' =>
-			'Entity.id in (SELECT entity_id FROM entities_entity_groups
-				WHERE entity_group_id = '.$_POST['data']['ServiceOrder']['entity_group_id'].')', 'order' => 'Entity.entity_name'));
-		
-		foreach($entities AS $k=>$v) :
-			echo '<option value="'.$k.'">'.$v.'</option>';
-		endforeach;
-	}
-
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid service order', true));
 			$this->redirect(array('action' => 'index'));
+		} else {
+			$serviceOrder = $this->ServiceOrder->read(null, $id);
+			
+			if (!is_null($serviceOrder['ServiceOrder']['service_order_cancellation_date'])) {
+				$this->Session->setFlash(__('Ordem de serviço cancelada, edição não permitida.', true));
+				$this->redirect(array('action' => 'view', $id));
+			}
 		}
+		
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_opening_user_id'] = $this->Auth->user('id');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
 			}
@@ -167,13 +159,21 @@ class ServiceOrdersController extends AppController {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid service order', true));
 			$this->redirect(array('action' => 'index'));
+		} else {
+			$serviceOrder = $this->ServiceOrder->read(null, $id);
+			
+			if (!is_null($serviceOrder['ServiceOrder']['service_order_cancellation_date'])) {
+				$this->Session->setFlash(__('Ordem de serviço cancelada, encaminhamento não permitido.', true));
+				$this->redirect(array('action' => 'view', $id));
+			}
 		}
+
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_routing_user_id'] = $this->Auth->user('id');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
 			}
@@ -196,13 +196,21 @@ class ServiceOrdersController extends AppController {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid service order', true));
 			$this->redirect(array('action' => 'index'));
+		} else {
+			$serviceOrder = $this->ServiceOrder->read(null, $id);
+					
+			if (!is_null($serviceOrder['ServiceOrder']['service_order_cancellation_date'])) {
+				$this->Session->setFlash(__('Ordem de serviço já cancelada.', true));
+				$this->redirect(array('action' => 'view', $id));
+			}
 		}
+
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_cancellation_user_id'] = $this->Auth->user('id');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
 			}
@@ -233,13 +241,18 @@ class ServiceOrdersController extends AppController {
 				$this->Session->setFlash(__('Ordem de serviço não encaminhada, favor encaminhar antes do encerramento.', true));
 				$this->redirect(array('action' => 'view', $id));
 			}
+			
+			if (!is_null($serviceOrder['ServiceOrder']['service_order_cancellation_date'])) {
+				$this->Session->setFlash(__('Ordem de serviço cancelada, encerramento não permitido.', true));
+				$this->redirect(array('action' => 'view', $id));
+			}
 		}
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_close_user_id'] = $this->Auth->user('id');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
 			}
@@ -264,13 +277,21 @@ class ServiceOrdersController extends AppController {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid service order', true));
 			$this->redirect(array('action' => 'index'));
+		} else {
+			$serviceOrder = $this->ServiceOrder->read(null, $id);
+			
+			if (is_null($serviceOrder['ServiceOrder']['service_order_close_date'])) {
+				$this->Session->setFlash(__('Ordem de serviço não encerrada, favor encerrar antes da avaliação.', true));
+				$this->redirect(array('action' => 'view', $id));
+			}
 		}
+		
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_evaluation_user_id'] = $this->Auth->user('id');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
 			}
@@ -278,16 +299,12 @@ class ServiceOrdersController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->ServiceOrder->read(null, $id);
 		}
-		$enterprises = $this->ServiceOrder->Enterprise->find('list');
-		$entityGroups = $this->ServiceOrder->EntityGroup->find('list');
-		$entities = $this->ServiceOrder->Entity->find('list');
-		$serviceOrderPriorities = $this->ServiceOrder->ServiceOrderPriority->find('list');
-		$serviceOrderTypes = $this->ServiceOrder->ServiceOrderType->find('list');
-		$entityTechnicians = $this->ServiceOrder->EntityTechnician->find('list', array('conditions' =>
-			array('entity_technician_enabled' => true)));
-		$serviceOrderOpeningUsers = $this->ServiceOrder->ServiceOrderOpeningUser->find('list');
-		$this->set(compact('enterprises', 'entityGroups', 'entities', 'serviceOrderPriorities', 'serviceOrderTypes',
-			'entityTechnicians', 'serviceOrderOpeningUsers'));
+		
+		$serviceOrderEvaluationEntityGroups = $this->ServiceOrder->ServiceOrderEvaluationEntityGroup->find('list');
+		$serviceOrderEvaluationEntities = array();
+		$serviceOrderEvaluations = $this->ServiceOrder->ServiceOrderEvaluation->find('list');
+		$this->set(compact('serviceOrderEvaluationEntityGroups', 'serviceOrderEvaluationEntities',
+			'serviceOrderEvaluations'));
 	}
 	
 	function delete($id = null) {
@@ -301,6 +318,38 @@ class ServiceOrdersController extends AppController {
 		}
 		$this->Session->setFlash(__('Service order was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function getEntity() {
+		$this->autoRender = false;
+		
+		if ( $this->RequestHandler->isAjax() ) {
+		   Configure::write ( 'debug', 0 );
+		}
+
+		$entities = $this->ServiceOrder->Entity->find('list', array('conditions' =>
+			'Entity.id in (SELECT entity_id FROM entities_entity_groups
+				WHERE entity_group_id = '.$_POST['data']['ServiceOrder']['entity_group_id'].')', 'order' => 'Entity.entity_name'));
+		
+		foreach($entities as $k => $v) :
+			echo '<option value="'.$k.'">'.$v.'</option>';
+		endforeach;
+	}
+
+	function getEvaluationEntity() {
+		$this->autoRender = false;
+		
+		if ( $this->RequestHandler->isAjax() ) {
+		   Configure::write ( 'debug', 0 );
+		}
+
+		$serviceOrderEvaluationEntities = $this->ServiceOrder->ServiceOrderEvaluationEntity->find('list', array('conditions' =>
+			'ServiceOrderEvaluationEntity.id in (SELECT entity_id FROM entities_entity_groups
+				WHERE entity_group_id = '.$_POST['data']['ServiceOrder']['service_order_evaluation_entity_group_id'].')', 'order' => 'ServiceOrderEvaluationEntity.entity_name'));
+		
+		foreach($serviceOrderEvaluationEntities as $k => $v) :
+			echo '<option value="'.$k.'">'.$v.'</option>';
+		endforeach;
 	}
 }
 ?>

@@ -41,6 +41,7 @@
 				'action' => 'view', $serviceOrder['ServiceOrderType']['id'])); ?>
 			&nbsp;
 		</dd>
+		<!--
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Garantia'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $serviceOrder['ServiceOrder']['service_order_warranty'] ? 'Sim' : 'Não'; ?>
@@ -51,6 +52,7 @@
 			<?php echo nl2br($serviceOrder['ServiceOrder']['service_order_warranty_description']); ?>
 			&nbsp;
 		</dd>
+		-->
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Abertura'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php

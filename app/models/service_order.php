@@ -200,6 +200,27 @@ class ServiceOrder extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'ServiceOrderEvaluationEntityGroup' => array(
+			'className' => 'ServiceOrderEvaluationEntityGroup',
+			'foreignKey' => 'service_order_evaluation_entity_group_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ServiceOrderEvaluationEntity' => array(
+			'className' => 'ServiceOrderEvaluationEntity',
+			'foreignKey' => 'service_order_evaluation_entity_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'ServiceOrderEvaluation' => array(
+			'className' => 'ServiceOrderEvaluation',
+			'foreignKey' => 'service_order_evaluation_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'ServiceOrderCancellationUser' => array(
 			'className' => 'ServiceOrderCancellationUser',
 			'foreignKey' => 'service_order_cancellation_user_id',
@@ -244,7 +265,7 @@ class ServiceOrder extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+	
 
 	var $hasAndBelongsToMany = array(
 		'StockMoviment' => array(
@@ -370,5 +391,10 @@ class ServiceOrder extends AppModel {
 		
 		return $count;
 	}
+	
+	function getOpeningDate()
+	{ 
+		return $this->data['ServiceOrder']['service_order_opening_date'];
+    }
 }
 ?>

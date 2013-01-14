@@ -1,16 +1,19 @@
 <?php
-class EntityGroup extends AppModel {
-	var $name = 'EntityGroup';
+class EntitiesEntityGroup extends AppModel {
+	var $name = 'EntitiesEntityGroup';
 	var $useDbConfig = 'tuna';
-	var $displayField = 'entity_group_structure';
-	var $order = 'entity_group_structure';
-	
-	var $virtualFields = array(
-		'entity_group_structure' => 'fn_entity_group_structure(EntityGroup.id)'
-		);
+	var $displayField = 'id';
 		
 	var $validate = array(
-		'entity_group_name' => array(
+		'entity_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -20,7 +23,15 @@ class EntityGroup extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'entity_group_description' => array(
+		'entity_group_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -34,32 +45,20 @@ class EntityGroup extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
-		'ParentEntityGroup' => array(
-			'className' => 'ParentEntityGroup',
-			'foreignKey' => 'parent_id',
+		'Entity' => array(
+			'className' => 'Entity',
+			'foreignKey' => 'entity_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'EntityGroup' => array(
+			'className' => 'EntityGroup',
+			'foreignKey' => 'entity_group_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		)
 	);
-
-	var $hasAndBelongsToMany = array(
-		'Entity' => array(
-			'className' => 'Entity',
-			'joinTable' => 'entities_entity_groups',
-			'foreignKey' => 'entity_group_id',
-			'associationForeignKey' => 'entity_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
-
 }
 ?>

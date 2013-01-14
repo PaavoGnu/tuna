@@ -3,6 +3,7 @@ class EntityType extends AppModel {
 	var $name = 'EntityType';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'entity_type_structure';
+	var $order = 'entity_type_structure';
 	
 	var $virtualFields = array(
 		'entity_type_structure' => 'fn_entity_type_structure(EntityType.id)'

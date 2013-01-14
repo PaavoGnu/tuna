@@ -1,5 +1,13 @@
 <div class="entities view">
   <h2><?php  __('Entidades - Visualizar');?></h2>
+	<div class="entities qaction">
+		<ul>
+			<li><?php echo 'Ações:'; ?></li>
+			<li><?php echo $this->Html->link('Editar,', array('action' => 'edit', $entity['Entity']['id'])); ?></li>
+			<li><?php echo $this->Html->link('Excluir', array('action' => 'delete', $entity['Entity']['id']), null, sprintf(__('Você têm certeza que deseja excluir a entidade #%s?', true), $entity['Entity']['id'])); ?></li>
+		</ul>
+	</div>
+	
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('ID'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -16,12 +24,12 @@
 			<?php echo $entity['Entity']['entity_name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nome Real'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nome Completo'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $entity['Entity']['entity_real_name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nascimento'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Data de Nascimento'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $entity['Entity']['entity_birth_date']; ?>
 			&nbsp;
@@ -89,26 +97,36 @@
 	</dl>
 </div>
 	<div class="related">
-	<?php if (!empty($entity['EntityGroup'])):?>
-	<h3><?php __('Grupos de Entidade Relacionados');?></h3>
+	<?php if (!empty($entity['EntitiesEntityGroup'])):?>
+	<h3><?php __('Entidades / Grupos de Entidade');?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('ID'); ?></th>
-		<th><?php __('Nome'); ?></th>
+		<th><?php __('Grupo de Entidade'); ?></th>
+		<th><?php __('Ações'); ?></th>
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($entity['EntityGroup'] as $entityGroup):
+		foreach ($entity['EntitiesEntityGroup'] as $entitiesEntityGroup):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $entityGroup['id'];?></td>
-			<td><?php echo $entityGroup['entity_group_name'];?></td>
+			<td><?php echo $entitiesEntityGroup['id'];?></td>
+			<td><?php echo $entityGroups[$entitiesEntityGroup['entity_group_id']];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('Excluir', true), array('controller' => 'entities_entity_groups', 'action' => 'delete', $entitiesEntityGroup['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $entitiesEntityGroup['id'])); ?>
+			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('Nova Entidade / Grupo de Entidade', true), array('controller' => 'entities_entity_groups', 'action' => 'add', $entity['Entity']['id'], null));?> </li>
+		</ul>
+	</div>
 </div>

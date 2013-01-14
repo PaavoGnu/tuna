@@ -1,5 +1,5 @@
 <?php
-class Entity extends AppModel {
+class ServiceOrderEvaluationEntity extends AppModel {
 	var $name = 'Entity';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'entity_name';
@@ -86,10 +86,11 @@ class Entity extends AppModel {
 		),
 	);
 		
+
 	var $hasMany = array(
 		'ServiceOrder' => array(
 			'className' => 'ServiceOrder',
-			'foreignKey' => 'entity_id',
+			'foreignKey' => 'service_order_evaluation_entity_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -125,22 +126,10 @@ class Entity extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-		'EntitiesEntityGroup' => array(
-			'className' => 'EntitiesEntityGroup',
-			'foreignKey' => 'entity_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		)
 	);
-	
+
+
 	var $hasAndBelongsToMany = array(
 		'EntityGroup' => array(
 			'className' => 'EntityGroup',
@@ -158,5 +147,6 @@ class Entity extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+
 }
 ?>

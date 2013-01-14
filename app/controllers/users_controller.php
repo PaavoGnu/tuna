@@ -66,7 +66,7 @@ class UsersController extends AppController {
 	function changePassword($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Usuário inválido.', true));
-			$this->redirect(array('action' => 'index'));
+			$this->redirect('/', null, false);
 		}
 		if ($this->data['User']['user_password'] == $this->data['User']['user_password_confirmation']) {
 			if (!empty($this->data)) {
@@ -74,7 +74,7 @@ class UsersController extends AppController {
 				
 				if ($this->User->save($this->data)) {
 					$this->Session->setFlash(__('Senha alterada.', true));
-					$this->redirect(array('action' => 'index'));
+					$this->redirect('/', null, false);
 				} else {
 					$this->Session->setFlash(__('A senha não pôde ser alterada, tente novamente.', true));
 				}
