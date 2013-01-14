@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('ID', 'id');?></th>
+			<th><?php echo $this->Paginator->sort('Grupo', 'group_id');?></th>
 			<th><?php echo $this->Paginator->sort('Entidade', 'entity_id');?></th>
 			<th><?php echo $this->Paginator->sort('Login', 'user_login');?></th>
 			<th><?php echo $this->Paginator->sort('Nome', 'user_name');?></th>
@@ -19,6 +20,9 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $user['User']['id']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($user['Group']['group_name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
+		</td>
 		<td>
 			<?php echo $this->Html->link($user['Entity']['entity_name'], array('controller' => 'entities', 'action' => 'view', $user['Entity']['id'])); ?>
 		</td>

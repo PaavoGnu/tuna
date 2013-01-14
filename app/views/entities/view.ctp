@@ -76,6 +76,11 @@
 			<?php echo $entity['Entity']['entity_ordinary_fone']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Ramal'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $entity['Entity']['entity_ordinary_fone_extension']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Celular'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $entity['Entity']['entity_mobile_fone']; ?>

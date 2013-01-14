@@ -267,6 +267,7 @@ class ServiceOrder extends AppModel {
 	
 	function getOrder() {
 		return array(
+			'ServiceOrder.service_order_cancellation_date',
 			'ServiceOrder.service_order_routing_date',
 			'ServiceOrder.service_order_close_date',
 			'ServiceOrder.service_order_evaluation_date',

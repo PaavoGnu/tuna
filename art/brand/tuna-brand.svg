@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   sodipodi:docname="tuna.0.2.0b.svg">
+   sodipodi:docname="tuna.0.3.0b.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -282,7 +282,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
      inkscape:cx="-669.83489"
-     inkscape:cy="614.8493"
+     inkscape:cy="581.09858"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -458,13 +458,14 @@
            id="tspan4124-82-2-4"
            y="498.80441"
            x="-647.24615"
-           sodipodi:role="line">wbms 0.2b</tspan></text>
+           sodipodi:role="line">wbms 0.3.0b</tspan></text>
     </g>
     <g
        id="g3731"
        transform="matrix(1.0097822,0,0,1.0097822,-84.920019,-9.068355)"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="D:\Desenvolvimento\Projetos\Tuna\0.3.0b\99.PNG\product.png">
       <g
          transform="translate(5.156391,-0.367496)"
          id="g3725">
@@ -498,7 +499,7 @@
            id="tspan4124-82-2"
            y="498.80441"
            x="-647.24615"
-           sodipodi:role="line">wbms 0.2b</tspan></text>
+           sodipodi:role="line">wbms 0.3.0b</tspan></text>
     </g>
   </g>
 </svg>

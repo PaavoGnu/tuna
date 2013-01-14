@@ -17,6 +17,7 @@
 		echo $this->Form->input('entity_postal_code', array('label' => 'CEP'));
 		echo $this->Form->input('entity_state_province', array('label' => 'UF'));
 		echo $this->Form->input('entity_ordinary_fone', array('label' => 'Telefone'));
+		echo $this->Form->input('entity_ordinary_fone_extension', array('label' => 'Ramal'));
 		echo $this->Form->input('entity_mobile_fone', array('label' => 'Celular'));
 		echo $this->Form->input('EntityGroup', array('label' => 'Grupos'));
 	?>

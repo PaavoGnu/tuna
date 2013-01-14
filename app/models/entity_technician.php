@@ -3,6 +3,7 @@ class EntityTechnician extends AppModel {
 	var $name = 'EntityTechnician';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'entity_technician_name';
+	var $order = 'entity_technician_name';
 	
 	var $virtualFields = array(
 		'entity_technician_name' => '(SELECT Entity.entity_name FROM entities as Entity WHERE Entity.id = EntityTechnician.entity_id)'

@@ -35,6 +35,13 @@ class User extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
+		'Group' => array(
+			'className' => 'Group',
+			'foreignKey' => 'group_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Entity' => array(
 			'className' => 'Entity',
 			'foreignKey' => 'entity_id',
@@ -60,46 +67,12 @@ class User extends AppModel {
 		)
 	);
 	
-	var $hasAndBelongsToMany = array(
-		'Group' => array(
-			'className' => 'Group',
-			'joinTable' => 'users_groups',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'group_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
-	
 	function parentNode() {
 		if (!$this->id && empty($this->data)) {
 			return null;
+		} else {
+			return array('Group' => array('id' => $this->data['User']['group_id']));
 		}
-		
-		return array('Group' => array('id' => 1));
-		
-		/*
-		foreach ($this->data['Group'] as $group):			
-			if (isset($group['group_id'])) {
-				$groupId = $group['group_id'];
-			} else {
-				$groupId = $this->field('group_id');
-			}
-		
-			if (!$groupId) {
-				return null;
-			} else {
-				return array('Group' => array('group_id' => $groupId));
-			}
-		endforeach;
-		*/
 	}
 }
 ?>
