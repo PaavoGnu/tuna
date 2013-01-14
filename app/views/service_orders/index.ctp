@@ -7,6 +7,7 @@
 			<li><?php echo $this->Html->link('Todas['.$countAll.'],', array('action' => 'index')); ?></li>
 			<li><?php echo $this->Html->link('Abertas['.$countOpened.'],', array('action' => 'index', 'opened')); ?></li>
 			<li><?php echo $this->Html->link('Encaminhadas['.$countRouted.'],', array('action' => 'index', 'routed')); ?></li>
+			<li><?php echo $this->Html->link('Posicionadas['.$countPositioned.'],', array('action' => 'index', 'positioned')); ?></li>
 			<li><?php echo $this->Html->link('Canceladas['.$countCanceled.'],', array('action' => 'index', 'canceled')); ?></li>
 			<li><?php echo $this->Html->link('Fechadas['.$countClosed.'],', array('action' => 'index', 'closed')); ?></li>
 			<li><?php echo $this->Html->link('Avaliadas['.$countEvaluated.']', array('action' => 'index', 'evaluated')); ?></li>

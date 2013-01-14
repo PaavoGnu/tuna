@@ -14,8 +14,6 @@
 			'timeFormat' => '24', 'minYear' => '2000'));
 		echo $this->Form->input('service_order_opening_description', array('label' => 'Descrição', 'type' => 'textarea'));
 		echo $this->Form->input('service_order_opening_observation', array('label' => 'Observação', 'type' => 'textarea'));
-		echo $this->Form->input('service_order_opening_user_id', array('label' => 'Usuário', 'type' => 'text', 'value' =>
-			$auth->user('id'), 'readonly' => true));
 		
 		$this->Js->get('#ServiceOrderEntityGroupId');
 		$this->Js->event('change', $this->Js->request(array('action' => 'getEntity', '$("#ServiceOrderEntityGroupId").serialize()'),

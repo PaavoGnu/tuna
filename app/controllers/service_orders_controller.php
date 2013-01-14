@@ -19,6 +19,12 @@ class ServiceOrdersController extends AppController {
 					'order' => $this->ServiceOrder->getOrder());
 				break;
 				
+			case 'positioned':
+				$this->paginate = array(
+					'conditions' => $this->ServiceOrder->getPositionedConditions(),
+					'order' => $this->ServiceOrder->getOrder());
+				break;
+			
 			case 'canceled':
 				$this->paginate = array(
 					'conditions' => $this->ServiceOrder->getCanceledConditions(),
@@ -46,12 +52,13 @@ class ServiceOrdersController extends AppController {
 		$countAll = $this->ServiceOrder->countAll();
 		$countOpened = $this->ServiceOrder->countOpened();
 		$countRouted = $this->ServiceOrder->countRouted();
+		$countPositioned = $this->ServiceOrder->countPositioned();
 		$countCanceled = $this->ServiceOrder->countCanceled();
 		$countClosed = $this->ServiceOrder->countClosed();
 		$countEvaluated = $this->ServiceOrder->countEvaluated();
 		
 		$this->set('serviceOrders', $this->paginate('ServiceOrder'));
-		$this->set(compact('filter', 'countAll', 'countOpened', 'countRouted', 'countCanceled', 'countClosed', 'countEvaluated'));
+		$this->set(compact('filter', 'countAll', 'countOpened', 'countRouted', 'countPositioned', 'countCanceled', 'countClosed', 'countEvaluated'));
 	}
 
 	function view($id = null) {
@@ -88,7 +95,9 @@ class ServiceOrdersController extends AppController {
 
 	function add() {
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_opening_user_id'] = $this->Auth->user('id');
 			$this->ServiceOrder->create();
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));				
 				$this->redirect(array('action' => 'view', $this->ServiceOrder->id));
@@ -130,6 +139,8 @@ class ServiceOrdersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_opening_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -158,6 +169,8 @@ class ServiceOrdersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_routing_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -185,6 +198,8 @@ class ServiceOrdersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_cancellation_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -216,10 +231,12 @@ class ServiceOrdersController extends AppController {
 			
 			if (is_null($serviceOrder['ServiceOrder']['service_order_routing_date'])) {
 				$this->Session->setFlash(__('Ordem de serviço não encaminhada, favor encaminhar antes do encerramento.', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			}
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_close_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -249,6 +266,8 @@ class ServiceOrdersController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
+			$this->data['ServiceOrder']['service_order_evaluation_user_id'] = $this->Auth->user('id');
+			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
 				$this->redirect(array('action' => 'index'));

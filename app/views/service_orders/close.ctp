@@ -7,8 +7,6 @@
 		echo $this->Form->input('service_order_close_date', array('label' => 'Data de Encerramento', 'dateFormat' => 'DMY', 
 			'timeFormat' => '24', 'minYear' => '2000'));
 		echo $this->Form->input('service_order_close_description', array('label' => 'Solução', 'type' => 'textarea'));
-		echo $this->Form->input('service_order_close_user_id', array('label' => 'Usuário', 'type' => 'text', 'value' =>
-			$auth->user('id'), 'readonly' => true));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Salvar', true));?>

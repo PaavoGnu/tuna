@@ -266,8 +266,13 @@ class ServiceOrder extends AppModel {
 	
 	
 	function getOrder() {
-		return array('
-			ServiceOrder.service_order_opening_date' => 'DESC');
+		return array(
+			'ServiceOrder.service_order_routing_date',
+			'ServiceOrder.service_order_close_date',
+			'ServiceOrder.service_order_evaluation_date',
+			'ServiceOrder.service_order_priority_id' => 'DESC',
+			'ServiceOrder.service_order_opening_date'
+			);
 	}
 		
 	function getOpenedConditions() {
@@ -276,7 +281,8 @@ class ServiceOrder extends AppModel {
 			ServiceOrder.service_order_routing_date IS NULL and
 			ServiceOrder.service_order_cancellation_date IS NULL and
 			ServiceOrder.service_order_close_date IS NULL and
-			ServiceOrder.service_order_evaluation_date IS NULL');
+			ServiceOrder.service_order_evaluation_date IS NULL and
+			fn_service_order_step_count(ServiceOrder.id,1) = 0');
 	}
 	
 	function getRoutedConditions() {
@@ -285,7 +291,18 @@ class ServiceOrder extends AppModel {
 			ServiceOrder.service_order_routing_date IS NOT NULL and
 			ServiceOrder.service_order_cancellation_date IS NULL and
 			ServiceOrder.service_order_close_date IS NULL and
-			ServiceOrder.service_order_evaluation_date IS NULL');
+			ServiceOrder.service_order_evaluation_date IS NULL and
+			fn_service_order_step_count(ServiceOrder.id,1) = 0');
+	}
+	
+	function getPositionedConditions() {
+		return array('
+			ServiceOrder.service_order_opening_date IS NOT NULL and
+			ServiceOrder.service_order_routing_date IS NOT NULL and
+			ServiceOrder.service_order_cancellation_date IS NULL and
+			ServiceOrder.service_order_close_date IS NULL and
+			ServiceOrder.service_order_evaluation_date IS NULL and
+			fn_service_order_step_count(ServiceOrder.id,1) > 0');
 	}
 	
 	function getCanceledConditions() {
@@ -325,6 +342,12 @@ class ServiceOrder extends AppModel {
 	
 	function countRouted() {
 		$count = $this->find('count', array('conditions' => $this->getRoutedConditions()));
+		
+		return $count;
+	}
+	
+	function countPositioned() {
+		$count = $this->find('count', array('conditions' => $this->getPositionedConditions()));
 		
 		return $count;
 	}

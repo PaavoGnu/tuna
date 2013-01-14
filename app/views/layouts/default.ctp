@@ -2,7 +2,7 @@
 <html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" dir="ltr">
 <head>
 	<title>
-		<?php __('Tuna - WBMS (0.1.0b) | '); ?>
+		<?php __($appTitle . ' (' . $appVersion . ') | '); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -20,7 +20,7 @@
 			<div class="left">
 				<?php echo $this->Html->link(
 					$this->Html->image('product.png', array('alt'=> __('Tuna - Web ERP', true), 'border' => '0')),
-						'http://www.tagbrasil.com.br/', array('target' => '_blank', 'escape' => false));
+						'http://www.tagbrasil.com.br/tuna', array('target' => '_blank', 'escape' => false));
 				?>
 			</div>
 			
