@@ -16,7 +16,7 @@ class StockMovimentsController extends AppController {
 		$enterprises = $this->StockMoviment->Enterprise->find('list');
 		$enterpriseUnits = array();
 		$stocks = array();
-		$stockMovimentTypes = $this->StockMoviment->StockMovimentType->find('list');
+		
 		$users = $this->StockMoviment->User->find('list');
 		$serviceOrders = $this->StockMoviment->ServiceOrder->find('list');
 		$this->set(compact('enterprises', 'enterprise_units', 'stocks', 'stockMovimentTypes', 'users', 'serviceOrders'));
@@ -33,6 +33,7 @@ class StockMovimentsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->data['StockMoviment']['user_id'] = $this->Auth->user('id');
+			$this->data['StockMoviment']['stock_moviment_date'] = date('Y-m-d H:i:s');
 			$this->StockMoviment->create();
 			
 			if ($this->StockMoviment->save($this->data)) {
@@ -46,11 +47,10 @@ class StockMovimentsController extends AppController {
 		}
 		$enterprises = $this->StockMoviment->Enterprise->find('list');
 		$enterpriseUnits = array();
-		$stocks = array();
-		$stockMovimentTypes = $this->StockMoviment->StockMovimentType->find('list');
+		$stocks = array();		
 		$users = $this->StockMoviment->User->find('list');
 		$serviceOrders = $this->StockMoviment->ServiceOrder->find('list');
-		$this->set(compact('enterprises', 'enterprise_units', 'stocks', 'stockMovimentTypes', 'users', 'serviceOrders'));
+		$this->set(compact('enterprises', 'enterprise_units', 'stocks', 'users', 'serviceOrders'));
 	}
 
 	function edit($id = null) {
@@ -74,10 +74,9 @@ class StockMovimentsController extends AppController {
 		$enterprises = $this->StockMoviment->Enterprise->find('list');
 		$enterpriseUnits = $this->StockMoviment->EnterpriseUnit->find('list');
 		$stocks = $this->StockMoviment->Stock->find('list');
-		$stockMovimentTypes = $this->StockMoviment->StockMovimentType->find('list');
 		$users = $this->StockMoviment->User->find('list');
 		$serviceOrders = $this->StockMoviment->ServiceOrder->find('list');
-		$this->set(compact('enterprises', 'enterpriseUnits', 'stocks', 'stockMovimentTypes', 'users', 'serviceOrders'));
+		$this->set(compact('enterprises', 'enterpriseUnits', 'stocks', 'users', 'serviceOrders'));
 	}
 
 	function delete($id = null) {

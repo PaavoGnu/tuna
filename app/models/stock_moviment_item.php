@@ -30,6 +30,24 @@ class StockMovimentItem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'stock_moviment_type_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'product_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -109,6 +127,13 @@ class StockMovimentItem extends AppModel {
 		'StockMoviment' => array(
 			'className' => 'StockMoviment',
 			'foreignKey' => 'stock_moviment_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'StockMovimentType' => array(
+			'className' => 'StockMovimentType',
+			'foreignKey' => 'stock_moviment_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

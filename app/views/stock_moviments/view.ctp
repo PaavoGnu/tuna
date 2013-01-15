@@ -23,11 +23,6 @@
 			<?php echo $this->Html->link($stockMoviment['Stock']['stock_name'], array('controller' => 'stocks', 'action' => 'view', $stockMoviment['Stock']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Tipo'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($stockMoviment['StockMovimentType']['stock_moviment_type_structure'], array('controller' => 'stock_moviment_types', 'action' => 'view', $stockMoviment['StockMovimentType']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Usuário'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($stockMoviment['User']['user_name'], array('controller' => 'users', 'action' => 'view', $stockMoviment['User']['id'])); ?>

@@ -5,10 +5,7 @@
 	<?php
 		echo $this->Form->input('enterprise_id', array('label' => 'Empresa', 'empty' => true));
 		echo $this->Form->input('enterprise_unit_id', array('label' => 'Unidade de Empresa', 'empty' => true));
-		echo $this->Form->input('stock_id', array('label' => 'Estoque', 'empty' => true));
-		echo $this->Form->input('stock_moviment_type_id', array('label' => 'Tipo', 'empty' => true));
-		echo $this->Form->input('stock_moviment_date', array('label' => 'Data', 'dateFormat' => 'DMY', 
-			'timeFormat' => '24', 'minYear' => '2000'));
+		echo $this->Form->input('stock_id', array('label' => 'Estoque', 'empty' => true));		
 		echo $this->Form->input('stock_moviment_description', array('label' => 'Descrição'));
 		
 		$this->Js->get('#StockMovimentEnterpriseId');

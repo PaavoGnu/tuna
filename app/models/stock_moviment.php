@@ -42,15 +42,6 @@ class StockMoviment extends AppModel {
 			'filterData' => null,
 			'filterCondition' => null,
 		),
-		'stock_moviment_type_id' =>  array(
-			'fieldLabel' => 'Tipo',
-			'fieldEmpty' => true,
-			
-			'filter' => true,
-			'filterType' => 'equal',
-			'filterData' => null,
-			'filterCondition' => null,
-		),
 		'user_id' =>  array(
 			'fieldLabel' => 'Usuário',
 			'fieldEmpty' => true,
@@ -138,24 +129,6 @@ class StockMoviment extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'stock_moviment_type_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'user_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -205,13 +178,6 @@ class StockMoviment extends AppModel {
 		'Stock' => array(
 			'className' => 'Stock',
 			'foreignKey' => 'stock_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'StockMovimentType' => array(
-			'className' => 'StockMovimentType',
-			'foreignKey' => 'stock_moviment_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

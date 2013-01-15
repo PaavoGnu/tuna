@@ -6,9 +6,14 @@
 			<?php echo $stockMovimentItem['StockMovimentItem']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Mov. de Estoque'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Movimento'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($stockMovimentItem['StockMoviment']['id'], array('controller' => 'stock_moviments', 'action' => 'view', $stockMovimentItem['StockMoviment']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Tipo de Movimento'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($stockMovimentItem['StockMoviment']['id'], array('controller' => 'stock_moviment_types', 'action' => 'view', $stockMovimentItem['StockMovimentType']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Tipo de Produto'); ?></dt>

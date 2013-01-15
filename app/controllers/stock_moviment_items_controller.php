@@ -24,10 +24,11 @@ class StockMovimentItemsController extends AppController {
 				$this->Session->setFlash(__('The stock moviment item could not be saved. Please, try again.', true));
 			}
 		}
+		$stockMovimentTypes = $this->StockMovimentItem->StockMovimentType->find('list');
 		$productTypes = $this->StockMovimentItem->ProductType->find('list');
 		$products = array();
 		$measureUnits = $this->StockMovimentItem->MeasureUnit->find('list');
-		$this->set(compact('stockMovimentId', 'productTypes', 'productBrands', 'products', 'measureUnits'));
+		$this->set(compact('stockMovimentId', 'stockMovimentTypes', 'productTypes', 'productBrands', 'products', 'measureUnits'));
 	}
 
 	function edit($id = null) {
@@ -49,10 +50,11 @@ class StockMovimentItemsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->StockMovimentItem->read(null, $id);
 		}
+		$stockMovimentTypes = $this->StockMovimentItem->StockMovimentType->find('list');
 		$productTypes = $this->StockMovimentItem->ProductType->find('list');
 		$products = $this->StockMovimentItem->Product->find('list');
 		$measureUnits = $this->StockMovimentItem->MeasureUnit->find('list');
-		$this->set(compact('productTypes', 'productBrands', 'products', 'measureUnits'));
+		$this->set(compact('stockMovimentTypes', 'productTypes', 'productBrands', 'products', 'measureUnits'));
 	}
 
 	function delete($id = null) {

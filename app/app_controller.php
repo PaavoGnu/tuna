@@ -16,7 +16,7 @@ class AppController extends Controller {
 		// Variáveis da Aplicação, Proprietário e Cliente.
 		
 		$appTitle = 'Tuna - WBMS';
-		$appVersion = '0.3.5b';
+		$appVersion = '0.3.6b';
 		$appTitleVersion = $appTitle . ' (' . $appVersion . ')';
 		
 		$frameWorkTitle = 'CakePHP';

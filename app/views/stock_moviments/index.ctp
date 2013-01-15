@@ -11,7 +11,6 @@
 			<th><?php echo $this->Paginator->sort('Empresa', 'enterprise_id');?></th>
 			<th><?php echo $this->Paginator->sort('Unidade de Empresa', 'enterprise_unit_id');?></th>
 			<th><?php echo $this->Paginator->sort('Estoque', 'stock_id');?></th>
-			<th><?php echo $this->Paginator->sort('Tipo', 'stock_moviment_type_id');?></th>
 			<th><?php echo $this->Paginator->sort('Usuário', 'user_id');?></th>
 			<th><?php echo $this->Paginator->sort('Data', 'stock_moviment_date');?></th>
 			<th><?php echo $this->Paginator->sort('Descrição', 'stock_moviment_description');?></th>
@@ -37,9 +36,6 @@
 		</td>
 		<td>
 			<?php echo $this->Html->link($stockMoviment['Stock']['stock_name'], array('controller' => 'stocks', 'action' => 'view', $stockMoviment['Stock']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($stockMoviment['StockMovimentType']['stock_moviment_type_name'], array('controller' => 'stock_moviment_types', 'action' => 'view', $stockMoviment['StockMovimentType']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($stockMoviment['User']['user_name'], array('controller' => 'users', 'action' => 'view', $stockMoviment['User']['id'])); ?>
