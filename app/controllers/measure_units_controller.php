@@ -4,10 +4,16 @@ class MeasureUnitsController extends AppController {
 	var $name = 'MeasureUnits';
 
 	function index() {
+		parent::index();
+	
 		$this->MeasureUnit->recursive = 0;
 		$this->set('measureUnits', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid measure unit', true));

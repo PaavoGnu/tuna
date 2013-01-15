@@ -5,6 +5,46 @@ class Product extends AppModel {
 	var $displayField = 'product_structure';
 	var $order = 'product_structure';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'product_type_id' =>  array(
+			'fieldLabel' => 'Tipo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'product_brand_id' =>  array(
+			'fieldLabel' => 'Marca',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'product_name' => array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'product_structure' => 'fn_product_structure(Product.id)'
 		);

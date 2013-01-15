@@ -4,10 +4,19 @@ class ProductTypesController extends AppController {
 	var $name = 'ProductTypes';
 
 	function index() {
+		parent::index();
+	
 		$this->ProductType->recursive = 0;
 		$this->set('productTypes', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$parents = $this->ProductType->ParentProductType->find('list');
+		$this->set(compact('parents'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid product type', true));

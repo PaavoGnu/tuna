@@ -1,5 +1,10 @@
 <div class="viewStockMovimentItems index">
 	<h2><?php __('Consulta do Movimento de Estoque');?></h2>
+		
+	<?php
+		echo $this->SwIndex->indexDefaultHeader();
+	?>
+	
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('Mov.', 'stock_moviment_id');?></th>
@@ -67,17 +72,14 @@
 <?php endforeach; ?>
 	</table>
 	
-	<div class="pagecount">
-		<p><?php
-			echo $this->Paginator->counter(array(
-			'format' => __('Página %page% de %pages%, exibindo %current% registro(s) do total de %count%, do registro %start% ao %end%', true)));
-		?></p>
-	</div>
+	<?php
+		echo $this->SwIndex->indexDefaultPageCount();
+		echo $this->SwIndex->indexDefaultPagination();
+	?>
 	
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('próxima', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	<div class="actions">
+		<?php
+			echo $this->Html->link(__('Filtrar', true), array('action' => 'indexFilter'));
+		?>
 	</div>
 </div>

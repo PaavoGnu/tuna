@@ -10,10 +10,20 @@ class UsersController extends AppController {
 	}
 
 	function index() {
+		parent::index();
+	
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$entities = $this->User->Entity->find('list');
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('entities', 'groups'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Usuário inválido.', true));

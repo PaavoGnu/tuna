@@ -5,6 +5,28 @@ class EntityTechnician extends AppModel {
 	var $displayField = 'entity_technician_name';
 	var $order = 'entity_technician_name';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_id' => array(
+			'fieldLabel' => 'Entidade',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'entity_technician_name' => '(SELECT Entity.entity_name FROM entities as Entity WHERE Entity.id = EntityTechnician.entity_id)'
 		);

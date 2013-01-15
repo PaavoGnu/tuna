@@ -4,51 +4,51 @@ class ServiceOrdersController extends AppController {
 	var $name = 'ServiceOrders';
 
 	function index($filter = null) {
-		$this->ServiceOrder->recursive = 0;
-		
-		switch($filter) {
-			case 'opened':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getOpenedConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
 				
-			case 'routed':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getRoutedConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
+		if (isset($filter)) {
+			switch($filter) {
+				case 'opened':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getOpenedConditions()
+						);
+					break;
 				
-			case 'positioned':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getPositionedConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
+				case 'routed':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getRoutedConditions()
+						);
+					break;
+				
+				case 'positioned':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getPositionedConditions()
+						);
+					break;
 			
-			case 'canceled':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getCanceledConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
+				case 'canceled':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getCanceledConditions()
+						);
+					break;
 				
-			case 'closed':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getClosedConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
+				case 'closed':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getClosedConditions()
+						);
+					break;
 				
-			case 'evaluated':
-				$this->paginate = array(
-					'conditions' => $this->ServiceOrder->getEvaluatedConditions(),
-					'order' => $this->ServiceOrder->getOrder());
-				break;
-				
-			default:
-				$this->paginate = array(
-					'order' => $this->ServiceOrder->getOrder());
-				break;
+				case 'evaluated':
+					$this->paginate = array(
+						'conditions' => $this->ServiceOrder->getEvaluatedConditions()
+						);
+					break;
+			}
+		} else {
+			parent::index();
 		}
 		
+		$this->ServiceOrder->recursive = 0;		
+	
 		$countAll = $this->ServiceOrder->countAll();
 		$countOpened = $this->ServiceOrder->countOpened();
 		$countRouted = $this->ServiceOrder->countRouted();
@@ -57,10 +57,35 @@ class ServiceOrdersController extends AppController {
 		$countClosed = $this->ServiceOrder->countClosed();
 		$countEvaluated = $this->ServiceOrder->countEvaluated();
 		
-		$this->set('serviceOrders', $this->paginate('ServiceOrder'));
+		$this->set('serviceOrders', $this->paginate());
 		$this->set(compact('filter', 'countAll', 'countOpened', 'countRouted', 'countPositioned', 'countCanceled', 'countClosed', 'countEvaluated'));
 	}
 
+	function indexFilter() {
+		$enterprises = $this->ServiceOrder->Enterprise->find('list');
+		$enterpriseUnits = $this->ServiceOrder->EnterpriseUnit->find('list');
+		$entityGroups = $this->ServiceOrder->EntityGroup->find('list');
+		$entities = array();
+		$entityContacts = array();
+		$serviceOrderPriorityTypes = $this->ServiceOrder->ServiceOrderPriorityType->find('list');
+		$serviceOrderTypes = $this->ServiceOrder->ServiceOrderType->find('list');
+		
+		$serviceOrderOpeningUsers = $this->ServiceOrder->ServiceOrderOpeningUser->find('list');
+		
+		$entityTechnicians = $this->ServiceOrder->EntityTechnician->find('list');
+		
+		$serviceOrderEvaluationEntityGroups = $this->ServiceOrder->ServiceOrderEvaluationEntityGroup->find('list');
+		$serviceOrderEvaluationEntities = array();
+		$serviceOrderEvaluationTypes = $this->ServiceOrder->ServiceOrderEvaluationType->find('list');
+			
+		$this->set(compact('enterprises', 'enterpriseUnits', 'entityGroups', 'entities', 'entityContacts',
+			'serviceOrderPriorityTypes', 'serviceOrderTypes', 'entityTechnicians', 'serviceOrderOpeningUsers',
+			'serviceOrderEvaluationEntityGroups', 'serviceOrderEvaluationEntities', 'serviceOrderEvaluationTypes'
+			));
+			
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid service order', true));
@@ -69,7 +94,7 @@ class ServiceOrdersController extends AppController {
 		$this->set('serviceOrder', $this->ServiceOrder->read(null, $id));
 		
 		$entityTechnicians = $this->ServiceOrder->EntityTechnician->find('list');
-		$serviceOrderStepTypes= $this->ServiceOrder->ServiceOrderStepType->find('list');
+		$serviceOrderStepTypes= $this->ServiceOrder->ServiceOrderStep->ServiceOrderStepType->find('list');
 		
 		$this->set(compact('entityTechnicians', 'serviceOrderStepTypes'));
 	}
@@ -80,19 +105,16 @@ class ServiceOrdersController extends AppController {
 		}
 	}
 	
-	function viewEntryReceipt($id = null) {
-		//if (!$id) {
-		//	$this->Session->setFlash(__('Invalid service order', true));
-		//	$this->redirect(array('action' => 'index'));
-		//} else {
-		//	$this->data = $this->ServiceOrder->read(null, $id);
-		//}
-		//$enterprises = $this->ServiceOrder->Enterprise->find('list');
-		//$entities = $this->ServiceOrder->Entity->find('list');
-		//$serviceOrderTypes = $this->ServiceOrder->ServiceOrderType->find('list');
-		//$entityTechnicians = $this->ServiceOrder->EntityTechnician->find('list');
-		//$serviceOrderOpeningUsers = $this->ServiceOrder->ServiceOrderOpeningUser->find('list');
-		//$this->set(compact('enterprises', 'entities', 'serviceOrderTypes', 'entityTechnicians', 'serviceOrderOpeningUsers'));
+	function pdfServiceOrder($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid service order', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		
+		$this->set('serviceOrder', $this->ServiceOrder->read(null, $id));
+		
+		$entityTechnicians = $this->ServiceOrder->EntityTechnician->find('list');
+		$serviceOrderStepTypes= $this->ServiceOrder->ServiceOrderStepType->find('list');
 		
 		$this->layout = 'pdf';
 		$this->render();

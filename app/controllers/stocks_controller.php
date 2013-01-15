@@ -4,10 +4,16 @@ class StocksController extends AppController {
 	var $name = 'Stocks';
 
 	function index() {
+		parent::index();
+	
 		$this->Stock->recursive = 0;
 		$this->set('stocks', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid stock', true));

@@ -5,6 +5,55 @@ class AssetMovimentType extends AppModel {
 	var $displayField = 'asset_moviment_type_structure';
 	var $order = 'asset_moviment_type_structure';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'parent_id' =>  array(
+			'fieldLabel' => 'Grupo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_operation_id' =>  array(
+			'fieldLabel' => 'Operação',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_type_name' => array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_type_description' => array(
+			'fieldLabel' => 'Descrição',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'asset_moviment_type_structure' => 'fn_asset_moviment_type_structure(AssetMovimentType.id)'
 		);

@@ -4,10 +4,22 @@ class EnterpriseUnitsController extends AppController {
 	var $name = 'EnterpriseUnits';
     
 	function index() {
+		parent::index();
+	
 		$this->EnterpriseUnit->recursive = 0;
 		$this->set('enterprise_units', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$parents = $this->EnterpriseUnit->ParentEnterpriseUnit->find('list');
+		$enterprises = $this->EnterpriseUnit->Enterprise->find('list');
+		$entities = $this->EnterpriseUnit->Entity->find('list');
+		$stocks = $this->EnterpriseUnit->Stock->find('list');
+		$this->set(compact('parents', 'enterprises', 'entities', 'stocks'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid enterprise unit', true));

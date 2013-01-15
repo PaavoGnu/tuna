@@ -4,10 +4,16 @@ class StockMovimentOperationsController extends AppController {
 	var $name = 'StockMovimentOperations';
 
 	function index() {
+		parent::index();
+	
 		$this->StockMovimentOperation->recursive = 0;
 		$this->set('stockMovimentOperations', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid stock moviment operation ', true));

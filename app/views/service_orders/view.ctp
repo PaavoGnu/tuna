@@ -1,3 +1,5 @@
+
+
 <div class="serviceOrders view">
 <h2><?php  __('Ordens de Serviço - Visualizar');?></h2>
 	<div class="serviceOrders qaction">
@@ -7,7 +9,8 @@
 			<li><?php echo $this->Html->link('Encaminhar,', array('action' => 'route', $serviceOrder['ServiceOrder']['id'])); ?></li>
 			<li><?php echo $this->Html->link('Cancelar,', array('action' => 'cancel', $serviceOrder['ServiceOrder']['id'])); ?></li>
 			<li><?php echo $this->Html->link('Encerrar,', array('action' => 'close', $serviceOrder['ServiceOrder']['id'])); ?></li>
-			<li><?php echo $this->Html->link('Avaliar', array('action' => 'evaluate', $serviceOrder['ServiceOrder']['id'])); ?></li>
+			<li><?php echo $this->Html->link('Avaliar,', array('action' => 'evaluate', $serviceOrder['ServiceOrder']['id'])); ?></li>
+			<li><?php echo $this->Html->link('PDF', array('action' => 'pdfServiceOrder', $serviceOrder['ServiceOrder']['id']), array('target' => '_blank', 'escape' => false)); ?></li>
 		</ul>
 	</div>
 	

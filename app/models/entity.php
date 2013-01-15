@@ -5,6 +5,46 @@ class Entity extends AppModel {
 	var $displayField = 'entity_name';
 	var $order = 'entity_name';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_type_id' =>  array(
+			'fieldLabel' => 'Tipo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_name' =>  array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_real_name' => array(
+			'fieldLabel' => 'Nome Completo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $validate = array(
 		'entity_type_id' => array(
 			'numeric' => array(

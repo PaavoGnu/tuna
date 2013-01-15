@@ -4,6 +4,46 @@ class User extends AppModel {
 	var $useDbConfig = 'tuna';
 	var $displayField = 'user_name';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'group_id' =>  array(
+			'fieldLabel' => 'Grupo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_id' => array(
+			'fieldLabel' => 'Entidade',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'user_login' => array(
+			'fieldLabel' => 'Login',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $actsAs = array('Acl' => array('type' => 'requester'));
 	
 	var $virtualFields = array(

@@ -4,10 +4,22 @@ class AssetMovimentsController extends AppController {
 	var $name = 'AssetMoviments';
 
 	function index() {
+		parent::index();
+	
 		$this->AssetMoviment->recursive = 0;
 		$this->set('assetMoviments', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$enterprises = $this->AssetMoviment->Enterprise->find('list');
+		$enterpriseUnits = array();
+		$assetMovimentTypes = $this->AssetMoviment->AssetMovimentType->find('list');
+		$users = $this->AssetMoviment->User->find('list');
+		$this->set(compact('enterprises', 'enterpriseUnits', 'assetMovimentTypes', 'users'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid asset moviment', true));

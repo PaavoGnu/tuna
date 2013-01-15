@@ -4,10 +4,19 @@ class ServiceOrderTypesController extends AppController {
 	var $name = 'ServiceOrderTypes';
 
 	function index() {
+		parent::index();
+	
 		$this->ServiceOrderType->recursive = 0;
 		$this->set('serviceOrderTypes', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$parents = $this->ServiceOrderType->ParentServiceOrderType->find('list');
+		$this->set(compact('parents'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid service order type', true));

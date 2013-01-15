@@ -5,10 +5,41 @@ class EntityGroup extends AppModel {
 	var $displayField = 'entity_group_structure';
 	var $order = 'entity_group_structure';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'parent_id' =>  array(
+			'fieldLabel' => 'Grupo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_group_name' => array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'entity_group_structure' => 'fn_entity_group_structure(EntityGroup.id)'
 		);
-		
+			
 	var $validate = array(
 		'entity_group_name' => array(
 			'notempty' => array(

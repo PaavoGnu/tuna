@@ -4,10 +4,24 @@ class StockMovimentsController extends AppController {
 	var $name = 'StockMoviments';
 
 	function index() {
+		parent::index();
+	
 		$this->StockMoviment->recursive = 0;
 		$this->set('stockMoviments', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$enterprises = $this->StockMoviment->Enterprise->find('list');
+		$enterpriseUnits = array();
+		$stocks = array();
+		$stockMovimentTypes = $this->StockMoviment->StockMovimentType->find('list');
+		$users = $this->StockMoviment->User->find('list');
+		$serviceOrders = $this->StockMoviment->ServiceOrder->find('list');
+		$this->set(compact('enterprises', 'enterprise_units', 'stocks', 'stockMovimentTypes', 'users', 'serviceOrders'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid stock moviment', true));

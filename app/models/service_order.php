@@ -3,6 +3,205 @@ class ServiceOrder extends AppModel {
 	var $name = 'ServiceOrder';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'id';
+	
+	var $order = array(
+			'service_order_cancellation_date',
+			'service_order_evaluation_date',
+			'service_order_close_date',
+			'service_order_routing_date',
+			'service_order_priority_type_id' => 'DESC',
+			'service_order_opening_date'
+			);
+	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldEmpty' => true,	
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'enterprise_id' => array(
+			'fieldLabel' => 'Empresa',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),	
+		'entity_group_id' => array(
+			'fieldLabel' => 'Grupo de Entidade',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,			
+		),
+		'entity_id' => array(
+			'fieldLabel' => 'Entidade',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_contact_id' => array(
+			'fieldLabel' => 'Contato',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_priority_type_id' => array(
+			'fieldLabel' => 'Prioridade',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_type_id' => array(
+			'fieldLabel' => 'Tipo',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_warranty' => array(
+			'fieldLabel' => 'Garantia',
+			
+			'filter' => false,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_opening_date' => array(
+			'fieldLabel' => 'Data de Abertura',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_description' => array(
+			'fieldLabel' => 'Descrição',
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_observation' => array(
+			'fieldLabel' => 'Observação',
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_technician_id' => array(
+			'fieldLabel' => 'Técnico',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_routing_date' => array(
+			'fieldLabel' => 'Data de Encaminhamento',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_cancellation_date' => array(
+			'fieldLabel' => 'Data de Cancelamento',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_cancellation_description' => array(
+			'fieldLabel' => 'Motivo',
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_close_date' => array(
+			'fieldLabel' => 'Data de Encerramento',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		), 
+		'service_order_close_description' => array(
+			'fieldLabel' => 'Solução',
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_evaluation_date' => array(
+			'fieldLabel' => 'Data de Avaliação',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'service_order_evaluation_type_id' => array(
+			'fieldLabel' => 'Tipo de Avaliação',
+			'fieldEmpty' => true,
+
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);	
+		
 	var $validate = array(
 		'enterprise_id' => array(
 			'numeric' => array(
@@ -86,7 +285,7 @@ class ServiceOrder extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'service_order_priority_id' => array(
+		'service_order_priority_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -141,24 +340,6 @@ class ServiceOrder extends AppModel {
 			),
 		),
 		'service_order_opening_description' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'service_order_opening_user_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -372,49 +553,7 @@ class ServiceOrder extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'EntityTechnician' => array(
-			'className' => 'EntityTechnician',
-			'joinTable' => 'service_order_steps',
-			'foreignKey' => 'service_order_id',
-			'associationForeignKey' => 'entity_technician_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'ServiceOrderStepType' => array(
-			'className' => 'ServiceOrderStepType',
-			'joinTable' => 'service_order_steps',
-			'foreignKey' => 'service_order_id',
-			'associationForeignKey' => 'service_order_step_type_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
 	);
-	
-	
-	function getOrder() {
-		return array(
-			'ServiceOrder.service_order_cancellation_date',
-			'ServiceOrder.service_order_routing_date',
-			'ServiceOrder.service_order_close_date',
-			'ServiceOrder.service_order_evaluation_date',
-			'ServiceOrder.service_order_priority_type_id' => 'DESC',
-			'ServiceOrder.service_order_opening_date'
-			);
-	}
 		
 	function getOpenedConditions() {
 		return array('

@@ -5,6 +5,37 @@ class StockMovimentOperation extends AppModel {
 	var $displayField = 'stock_moviment_operation_name';
 	var $order = 'stock_moviment_operation_name';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_operation_name' => array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_operation_description' => array(
+			'fieldLabel' => 'Descrição',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $validate = array(
 		'stock_moviment_operation_name' => array(
 			'notempty' => array(

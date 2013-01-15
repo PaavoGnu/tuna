@@ -5,6 +5,37 @@ class Enterprise extends AppModel {
 	var $displayField = 'enterprise_structure';
 	var $order = 'enterprise_structure';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'parent_id' =>  array(
+			'fieldLabel' => 'Grupo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'entity_id' => array(
+			'fieldLabel' => 'Entidade',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'enterprise_structure' => 'fn_enterprise_structure(Enterprise.id)'
 		);

@@ -4,10 +4,19 @@ class EntityTechniciansController extends AppController {
 	var $name = 'EntityTechnicians';
 
 	function index() {
+		parent::index();
+	
 		$this->EntityTechnician->recursive = 0;
 		$this->set('entityTechnicians', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$entities = $this->EntityTechnician->Entity->find('list');
+		$this->set(compact('entities'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid entity technician', true));

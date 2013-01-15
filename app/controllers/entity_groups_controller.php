@@ -3,11 +3,20 @@ class EntityGroupsController extends AppController {
 
 	var $name = 'EntityGroups';
 
-	function index() {
+	function index() {		
+		parent::index();
+		
 		$this->EntityGroup->recursive = 0;
-		$this->set('entityGroups', $this->paginate());
+		$this->set('entityGroups', $this->paginate());		
 	}
-
+	
+	function indexFilter() {
+		$parents = $this->EntityGroup->ParentEntityGroup->find('list');
+		$this->set(compact('parents'));	
+		
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid entity group', true));

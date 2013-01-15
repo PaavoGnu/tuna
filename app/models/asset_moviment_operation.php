@@ -5,6 +5,37 @@ class AssetMovimentOperation extends AppModel {
 	var $displayField = 'asset_moviment_operation_name';
 	var $order = 'asset_moviment_operation_name';
 	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_operation_name' => array(
+			'fieldLabel' => 'Nome',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_operation_description' => array(
+			'fieldLabel' => 'Descrição',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $validate = array(
 		'asset_moviment_operation_name' => array(
 			'notempty' => array(

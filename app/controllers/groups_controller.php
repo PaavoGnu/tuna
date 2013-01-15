@@ -10,10 +10,16 @@ class GroupsController extends AppController {
 	}
 
 	function index() {
+		parent::index();
+	
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid group', true));

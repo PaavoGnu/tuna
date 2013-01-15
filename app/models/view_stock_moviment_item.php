@@ -7,6 +7,131 @@ class ViewStockMovimentItem extends AppModel {
 	
 	var $order = 'ViewStockMovimentItem.stock_moviment_date DESC';
 	
+	var $swModelFields = array(
+		'stock_moviment_id' => array(
+			'fieldLabel' => 'Movimento',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_item_id' => array(
+			'fieldLabel' => 'Item',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_date' =>  array(
+			'fieldLabel' => 'Data',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'enterprise_id' =>  array(
+			'fieldLabel' => 'Empresa',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'enterprise_unit_id' =>  array(
+			'fieldLabel' => 'Unidade de Empresa',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_id' =>  array(
+			'fieldLabel' => 'Estoque',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_type_id' =>  array(
+			'fieldLabel' => 'Tipo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'product_type_id' =>  array(
+			'fieldLabel' => 'Tipo de Produto',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'product_id' =>  array(
+			'fieldLabel' => 'Produto',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'measure_unit_id' =>  array(
+			'fieldLabel' => 'Unidade de Medida',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_item_amount' =>  array(
+			'fieldLabel' => 'Quantidade',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_item_serial_number' =>  array(
+			'fieldLabel' => 'Número de Série',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'stock_moviment_item_service_number' =>  array(
+			'fieldLabel' => 'Etiqueta de Serviço',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $virtualFields = array(
 		'product_type_structure' => 'fn_product_type_structure(StockMovimentItem.product_type_id)',
 		'product_structure' => 'fn_product_structure(StockMovimentItem.product_id)',

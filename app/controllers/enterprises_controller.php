@@ -4,10 +4,20 @@ class EnterprisesController extends AppController {
 	var $name = 'Enterprises';
     
 	function index() {
+		parent::index();
+	
 		$this->Enterprise->recursive = 0;
 		$this->set('enterprises', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$parents = $this->Enterprise->ParentEnterprise->find('list');
+		$entities = $this->Enterprise->Entity->find('list');
+		$this->set(compact('parents', 'entities'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid enterprise', true));

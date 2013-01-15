@@ -1,5 +1,13 @@
 <div class="serviceOrders index">
 	<h2><?php __('Ordens de Serviço');?></h2>
+		
+	<?php
+		echo $this->SwIndex->indexDefaultHeader();
+	?>
+	
+	<?php
+		echo $this->SwIndex->indexDefaultHeader();
+	?>
 	
 	<div class="serviceOrders qfilter">
 		<ul>
@@ -29,7 +37,8 @@
 			<th><?php echo $this->Paginator->sort('Encaminhamento', 'service_order_routing_date');?></th>
 			<th><?php echo $this->Paginator->sort('Técnico', 'entity_technician_id');?></th>
 			<th><?php echo $this->Paginator->sort('Encerramento', 'service_order_close_date');?></th>
-			<th><?php echo $this->Paginator->sort('Avaliação', 'service_order_cancellation_date');?></th>
+			<th><?php echo $this->Paginator->sort('Avaliação', 'service_order_evaluation_date');?></th>
+			<th><?php echo $this->Paginator->sort('Cancelamento', 'service_order_cancellation_date');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -39,7 +48,7 @@
 			$class = ' class="altrow"';
 		}
 	?>
-	<tr<?php echo $class;?>>
+	<tr <?php echo $class;?>>
 		<td><?php echo $this->Html->link(__($serviceOrder['ServiceOrder']['id'], true), array('action' => 'view', $serviceOrder['ServiceOrder']['id'])); ?>&nbsp;</td>
 		<td><?php
 				if (!is_null($serviceOrder['ServiceOrder']['service_order_opening_date'])) {
@@ -47,7 +56,7 @@
 					} ?>
 		</td>
 		<!--<td>
-			<?php echo $this->Html->link($serviceOrder['Enterprise']['enterprise_name'], array('controller' => 'enterprises', 'action' => 'view', $serviceOrder['Enterprise']['id'])); ?>
+			<?php echo $this->Html->link($serviceOrder['Enterprise']['enterprise_structure'], array('controller' => 'enterprises', 'action' => 'view', $serviceOrder['Enterprise']['id'])); ?>
 		</td>-->
 		<!--<td>
 			<?php echo $this->Html->link($serviceOrder['EnterpriseUnit']['enterprise_unit_structure'], array('controller' => 'enterprise_units', 'action' => 'view', $serviceOrder['EnterpriseUnit']['id'])); ?>
@@ -86,25 +95,16 @@
 					echo date('d/m/Y H:i', strtotime($serviceOrder['ServiceOrder']['service_order_evaluation_date']));
 					} ?>
 		</td>
+		<td><?php
+				if (!is_null($serviceOrder['ServiceOrder']['service_order_cancellation_date'])) {
+					echo date('d/m/Y H:i', strtotime($serviceOrder['ServiceOrder']['service_order_cancellation_date']));
+					} ?>
+		</td>
 	</tr>
 <?php endforeach; ?>
 	</table>
 	
-	<div class="pagecount">
-		<p><?php
-			echo $this->Paginator->counter(array(
-			'format' => __('Página %page% de %pages%, exibindo %current% registro(s) do total de %count%, do registro %start% ao %end%', true)));
-		?></p>
-	</div>
-	
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('próxima', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-	</div>
-	
-	<div class="actions">
-		<?php echo $this->Html->link(__('Novo Registro', true), array('action' => 'add')); ?>
-	</div>
+	<?php
+		echo $this->SwIndex->indexDefaultFooter();
+	?>
 </div>

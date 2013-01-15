@@ -3,11 +3,17 @@ class AssetMovimentOperationsController extends AppController {
 
 	var $name = 'AssetMovimentOperations';
 
-	function index() {
+	function index() {		
+		parent::index();
+		
 		$this->AssetMovimentOperation->recursive = 0;
 		$this->set('assetMovimentOperations', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid asset moviment operation ', true));

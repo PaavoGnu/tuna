@@ -3,6 +3,77 @@ class AssetMoviment extends AppModel {
 	var $name = 'AssetMoviment';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'id';
+	
+	var $swModelFields = array(
+		'id' => array(
+			'fieldLabel' => 'ID',
+			'fieldType' => 'text',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'enterprise_id' =>  array(
+			'fieldLabel' => 'Empresa',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'enterprise_unit_id' =>  array(
+			'fieldLabel' => 'Unidade de Empresa',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_type_id' =>  array(
+			'fieldLabel' => 'Tipo',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'user_id' =>  array(
+			'fieldLabel' => 'Usuário',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'equal',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_date' =>  array(
+			'fieldLabel' => 'Data',
+			'fieldType' => 'datetime',
+			'fieldDateFormat' => 'DMY', 
+			'fieldTimeFormat' => '24',
+			'fieldMinYear' => '2000',
+			
+			'filter' => true,
+			'filterType' => 'between',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+		'asset_moviment_description' => array(
+			'fieldLabel' => 'Descrição',
+			'fieldEmpty' => true,
+			
+			'filter' => true,
+			'filterType' => 'like',
+			'filterData' => null,
+			'filterCondition' => null,
+		),
+	);
+	
 	var $validate = array(
 		'enterprise_id' => array(
 			'numeric' => array(

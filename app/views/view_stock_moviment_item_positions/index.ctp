@@ -1,9 +1,15 @@
 <div class="viewStockMovimentItemPositions index">
 	<h2><?php __('Consulta da Posição de Estoque');?></h2>
+		
+	<?php
+		echo $this->SwIndex->indexDefaultHeader();
+	?>
+	
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('Empresa', 'enterprise_id');?></th>
 			<th><?php echo $this->Paginator->sort('Unidade de Empresa', 'enterprise_unit_id');?></th>
+			<th><?php echo $this->Paginator->sort('Estoque', 'stock_id');?></th>
 			<th><?php echo $this->Paginator->sort('Tipo de Prod.', 'product_type_id');?></th>
 			<th><?php echo $this->Paginator->sort('Produto', 'product_id');?></th>
 			<th><?php echo $this->Paginator->sort('Un.', 'measure_unit_id');?></th>
@@ -27,6 +33,10 @@
 				$viewStockMovimentItemPosition['EnterpriseUnit']['id'])); ?>
 		</td>
 		<td>
+			<?php echo $this->Html->link($viewStockMovimentItemPosition['Stock']['stock_name'], array('controller' => 'stock', 'action' => 'view',
+				$viewStockMovimentItemPosition['Stock']['id'])); ?>
+		</td>
+		<td>
 			<?php echo $this->Html->link($viewStockMovimentItemPosition['ProductType']['product_type_structure'], array('controller' => 'product_types', 'action' => 'view',
 				$viewStockMovimentItemPosition['ProductType']['id'])); ?>
 		</td>
@@ -43,17 +53,14 @@
 <?php endforeach; ?>
 	</table>
 	
-	<div class="pagecount">
-		<p><?php
-			echo $this->Paginator->counter(array(
-			'format' => __('Página %page% de %pages%, exibindo %current% registro(s) do total de %count%, do registro %start% ao %end%', true)));
-		?></p>
-	</div>
+	<?php
+		echo $this->SwIndex->indexDefaultPageCount();
+		echo $this->SwIndex->indexDefaultPagination();
+	?>
 	
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('próxima', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	<div class="actions">
+		<?php
+			echo $this->Html->link(__('Filtrar', true), array('action' => 'indexFilter'));
+		?>
 	</div>
 </div>

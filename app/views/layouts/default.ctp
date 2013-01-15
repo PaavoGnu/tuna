@@ -124,14 +124,13 @@
 			<div class="left">
 				<ul>
 					<li>Módulo: Ordem de Serviço</li>
-					<li><?php echo 'Usuário: '. $this->Html->link($auth->user('id') . ' - ' . $auth->user('user_name'),
-						array('controller' => 'users', 'action' => 'view', $auth->user('id'))); ?></li>
+					<li><?php echo 'Usuário: '. $this->Html->link($userId . ' - ' . $userName, array('controller' => 'users', 'action' => 'view', $userId)); ?></li>
 				</ul>
 			</div>
 			<div class="right">
 				<ul>
 					<li><?php echo $this->Html->link(__('Logout', true), array('controller' => 'users', 'action' => 'logout')); ?></li>
-					<li><?php echo $this->Html->link(__('Trocar Senha', true), array('controller' => 'users', 'action' => 'changePassword', $auth->user('id'))); ?></li>
+					<li><?php echo $this->Html->link(__('Trocar Senha', true), array('controller' => 'users', 'action' => 'changePassword', $userId)); ?></li>
 					<li><?php echo 'Powered By: ' . $this->Html->link(__($frameWorkTitle.' ('.$frameWorkVersion.')', true), $frameWorkURL, array('target' => '_blank', 'escape' => false)); ?></li>					
 				</ul>
 			</div>

@@ -4,10 +4,19 @@ class EntitiesController extends AppController {
 	var $name = 'Entities';
 
 	function index() {
+		parent::index();
+	
 		$this->Entity->recursive = 0;
 		$this->set('entities', $this->paginate()); 
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$entityTypes = $this->Entity->EntityType->find('list');
+		$this->set(compact('entityTypes'));
+	}
+	
 	function view($id = null) {
 		$this->Entity->recursive = 2;
 		

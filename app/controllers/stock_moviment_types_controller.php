@@ -4,10 +4,20 @@ class StockMovimentTypesController extends AppController {
 	var $name = 'StockMovimentTypes';
 
 	function index() {
+		parent::index();
+	
 		$this->StockMovimentType->recursive = 0;
 		$this->set('stockMovimentTypes', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+		
+		$parents = $this->StockMovimentType->ParentStockMovimentType->find('list');
+		$stockMovimentOperations = $this->StockMovimentType->StockMovimentOperation->find('list');
+		$this->set(compact('parents', 'stockMovimentOperations'));
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid stock moviment type', true));

@@ -4,10 +4,16 @@ class ServiceOrderStepTypesController extends AppController {
 	var $name = 'ServiceOrderStepTypes';
 
 	function index() {
+		parent::index();
+	
 		$this->ServiceOrderStepType->recursive = 0;
 		$this->set('serviceOrderStepTypes', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid service order step type', true));

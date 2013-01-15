@@ -4,10 +4,16 @@ class ProductBrandsController extends AppController {
 	var $name = 'ProductBrands';
 
 	function index() {
+		parent::index();
+	
 		$this->ProductBrand->recursive = 0;
 		$this->set('productBrands', $this->paginate());
 	}
-
+	
+	function indexFilter() {
+		parent::indexFilter();
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid product brand', true));
