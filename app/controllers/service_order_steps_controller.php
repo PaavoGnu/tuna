@@ -16,6 +16,7 @@ class ServiceOrderStepsController extends AppController {
 			$this->ServiceOrderStep->create();
 			
 			$this->data['ServiceOrderStep']['service_order_step_opening_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrderStep']['service_order_step_opening_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
@@ -40,6 +41,7 @@ class ServiceOrderStepsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			$this->data['ServiceOrderStep']['service_order_step_opening_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrderStep']['service_order_step_opening_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
@@ -67,6 +69,7 @@ class ServiceOrderStepsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			$this->data['ServiceOrderStep']['service_order_step_close_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrderStep']['service_order_step_close_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrderStep->save($this->data)) {
 				$this->Session->setFlash(__('The service order step has been saved', true));
@@ -83,20 +86,20 @@ class ServiceOrderStepsController extends AppController {
 		$this->set(compact('serviceOrderId', 'serviceOrders', 'serviceOrderStepCloseUsers'));
 	}
 
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for service order step', true));
-			$this->redirect(array('action'=>'index'));
-		} else {
-			$this->data = $this->ServiceOrderStep->read(null, $id);
-			$serviceOrderId = $this->data['ServiceOrderStep']['service_order_id'];
-		}
-		if ($this->ServiceOrderStep->delete($id)) {
-			$this->Session->setFlash(__('Service order step deleted', true));
-			$this->redirect(array('controller' => 'service_orders', 'action' => 'view', $serviceOrderId));
-		}
-		$this->Session->setFlash(__('Service order step was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
+	//function delete($id = null) {
+	//	if (!$id) {
+	//		$this->Session->setFlash(__('Invalid id for service order step', true));
+	//		$this->redirect(array('action'=>'index'));
+	//	} else {
+	//		$this->data = $this->ServiceOrderStep->read(null, $id);
+	//		$serviceOrderId = $this->data['ServiceOrderStep']['service_order_id'];
+	//	}
+	//	if ($this->ServiceOrderStep->delete($id)) {
+	//		$this->Session->setFlash(__('Service order step deleted', true));
+	//		$this->redirect(array('controller' => 'service_orders', 'action' => 'view', $serviceOrderId));
+	//	}
+	//	$this->Session->setFlash(__('Service order step was not deleted', true));
+	//	$this->redirect(array('action' => 'index'));
+	//}
 }
 ?>

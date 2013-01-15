@@ -215,7 +215,7 @@
 				<?php echo $this->Html->link(__('Visualizar', true), array('controller' => 'service_order_steps', 'action' => 'view', $serviceOrderStep['id'])); ?>
 				<?php echo $this->Html->link(__('Editar', true), array('controller' => 'service_order_steps', 'action' => 'edit', $serviceOrderStep['id'])); ?>
 				<?php echo $this->Html->link(__('Encerrar', true), array('controller' => 'service_order_steps', 'action' => 'close', $serviceOrderStep['id'])); ?>
-				<?php echo $this->Html->link(__('Excluir', true), array('controller' => 'service_order_steps', 'action' => 'delete', $serviceOrderStep['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $serviceOrderStep['id'])); ?>
+				<!--<?php echo $this->Html->link(__('Excluir', true), array('controller' => 'service_order_steps', 'action' => 'delete', $serviceOrderStep['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $serviceOrderStep['id'])); ?>-->
 			</td>
 		</tr>
 	<?php endforeach; ?>

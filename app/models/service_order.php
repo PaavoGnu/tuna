@@ -5,12 +5,13 @@ class ServiceOrder extends AppModel {
 	var $displayField = 'id';
 	
 	var $order = array(
-			'service_order_cancellation_date',
-			'service_order_evaluation_date',
-			'service_order_close_date',
-			'service_order_routing_date',
-			'service_order_priority_type_id' => 'DESC',
-			'service_order_opening_date'
+			//'service_order_cancellation_date',
+			//'service_order_evaluation_date',
+			//'service_order_close_date',
+			//'service_order_routing_date',
+			//'service_order_priority_type_id' => 'DESC',
+			//'service_order_opening_date'
+			'service_order_opening_date' => 'DESC'
 			);
 	
 	var $swModelFields = array(

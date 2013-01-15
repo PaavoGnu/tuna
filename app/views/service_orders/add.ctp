@@ -12,8 +12,8 @@
 		echo $this->Form->input('service_order_type_id', array('label' => 'Tipo', 'empty' => true));
 		//echo $this->Form->input('service_order_warranty', array('label' => 'Garantia'));
 		//echo $this->Form->input('service_order_warranty_description', array('label' => 'Descrição da Garantia', 'type' => 'textarea'));
-		echo $this->Form->input('service_order_opening_date', array('label' => 'Data de Abertura', 'dateFormat' => 'DMY', 
-			'timeFormat' => '24', 'minYear' => '2000'));
+		//echo $this->Form->input('service_order_opening_date', array('label' => 'Data de Abertura', 'dateFormat' => 'DMY', 
+		//	'timeFormat' => '24', 'minYear' => '2000'));
 		echo $this->Form->input('service_order_opening_description', array('label' => 'Descrição', 'type' => 'textarea'));
 		echo $this->Form->input('service_order_opening_observation', array('label' => 'Observação', 'type' => 'textarea'));
 		

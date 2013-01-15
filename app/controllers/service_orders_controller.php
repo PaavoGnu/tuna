@@ -123,6 +123,7 @@ class ServiceOrdersController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_opening_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_opening_date'] = date('Y-m-d H:i:s');
 			$this->ServiceOrder->create();
 			
 			if ($this->ServiceOrder->save($this->data)) {
@@ -161,6 +162,7 @@ class ServiceOrdersController extends AppController {
 		
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_opening_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_opening_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
@@ -201,6 +203,7 @@ class ServiceOrdersController extends AppController {
 
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_routing_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_routing_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
@@ -234,6 +237,7 @@ class ServiceOrdersController extends AppController {
 
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_cancellation_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_cancellation_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
@@ -268,6 +272,7 @@ class ServiceOrdersController extends AppController {
 		}
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_close_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_close_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
@@ -298,6 +303,7 @@ class ServiceOrdersController extends AppController {
 		
 		if (!empty($this->data)) {
 			$this->data['ServiceOrder']['service_order_evaluation_user_id'] = $this->Auth->user('id');
+			$this->data['ServiceOrder']['service_order_evaluation_date'] = date('Y-m-d H:i:s');
 			
 			if ($this->ServiceOrder->save($this->data)) {
 				$this->Session->setFlash(__('The service order has been saved', true));
@@ -317,18 +323,18 @@ class ServiceOrdersController extends AppController {
 			'serviceOrderEvaluationTypes'));
 	}
 	
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for service order', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->ServiceOrder->delete($id)) {
-			$this->Session->setFlash(__('Service order deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Service order was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
+	//function delete($id = null) {
+	//	if (!$id) {
+	//		$this->Session->setFlash(__('Invalid id for service order', true));
+	//		$this->redirect(array('action'=>'index'));
+	//	}
+	//	if ($this->ServiceOrder->delete($id)) {
+	//		$this->Session->setFlash(__('Service order deleted', true));
+	//		$this->redirect(array('action'=>'index'));
+	//	}
+	//	$this->Session->setFlash(__('Service order was not deleted', true));
+	//	$this->redirect(array('action' => 'index'));
+	//}
 	
 	function getEnterpriseUnit() {
 		$this->autoRender = false;

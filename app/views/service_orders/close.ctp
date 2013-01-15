@@ -4,8 +4,8 @@
  		<legend><?php __('Ordens de Serviço - Encerrar'); ?></legend>
 	<?php
 		echo $this->Form->input('id', array('label' => 'ID'));
-		echo $this->Form->input('service_order_close_date', array('label' => 'Data de Encerramento', 'dateFormat' => 'DMY', 
-			'timeFormat' => '24', 'minYear' => '2000'));
+		//echo $this->Form->input('service_order_close_date', array('label' => 'Data de Encerramento', 'dateFormat' => 'DMY', 
+		//	'timeFormat' => '24', 'minYear' => '2000'));
 		echo $this->Form->input('service_order_close_description', array('label' => 'Solução', 'type' => 'textarea'));
 	?>
 	</fieldset>
