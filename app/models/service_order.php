@@ -98,7 +98,7 @@ class ServiceOrder extends AppModel {
 			'filterData' => null,
 			'filterCondition' => null,
 		),
-		'service_order_description' => array(
+		'service_order_opening_description' => array(
 			'fieldLabel' => 'Descrição',
 			
 			'filter' => true,
@@ -106,7 +106,7 @@ class ServiceOrder extends AppModel {
 			'filterData' => null,
 			'filterCondition' => null,
 		),
-		'service_order_observation' => array(
+		'service_order_opening_observation' => array(
 			'fieldLabel' => 'Observação',
 			
 			'filter' => true,

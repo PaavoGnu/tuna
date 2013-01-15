@@ -207,8 +207,9 @@ class ServiceOrdersController extends AppController {
 				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The service order could not be saved. Please, try again.', true));
-			}
+			}			
 		}
+		
 		if (empty($this->data)) {
 			$this->data = $this->ServiceOrder->read(null, $id);
 		}
