@@ -3,7 +3,7 @@ class ServiceOrderEvaluationType extends AppModel {
 	var $name = 'ServiceOrderEvaluationType';
 	var $useDbConfig = 'tuna';
 	var $displayField = 'service_order_evaluation_type_structure';
-	var $order = 'service_order_evaluation_type_structure';
+	var $order = 'id';
 	
 	var $virtualFields = array(
 		'service_order_evaluation_type_structure' => 'fn_service_order_evaluation_type_structure(ServiceOrderEvaluationType.id)'
